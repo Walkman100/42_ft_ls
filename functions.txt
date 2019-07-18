@@ -1,0 +1,299 @@
+write		ssize_t write(int fd, const void *buf, size_t nbyte);
+opendir		DIR *opendir(const char *filename);
+readdir		struct dirent *readdir(DIR *dirp);
+closedir	int closedir(DIR *dirp);
+stat		int stat(const char *restrict path, struct stat *restrict buf);
+lstat		int lstat(const char *restrict path, struct stat *restrict buf);
+getpwuid	struct passwd *getpwuid(uid_t uid);
+getgrgid	struct group *getgrgid(gid_t gid);
+listxattr	ssize_t listxattr(const char *path, char *namebuf, size_t size, int options);
+getxattr	ssize_t getxattr(const char *path, const char *name, void *value, size_t size, u_int32_t position, int options);
+time		time_t time(time_t *tloc);
+ctime		char *ctime(const time_t *clock);
+readlink	ssize_t readlink(const char *restrict path, char *restrict buf, size_t bufsize);
+malloc		void *malloc(size_t size);
+free		void free(void *ptr);
+perror		void perror(const char *s);
+strerror	char *strerror(int errnum);
+exit		void exit(int status);
+
+
+DIR:
+	 /* structure describing an open directory. */
+	 typedef struct _dirdesc {
+			 int     __dd_fd;      /* file descriptor associated with directory */
+			 long    __dd_loc;     /* offset in current buffer */
+			 long    __dd_size;    /* amount of data returned by getdirentries */
+			 char    *__dd_buf;    /* data buffer */
+			 int     __dd_len;     /* size of data buffer */
+			 long    __dd_seek;    /* magic cookie returned by getdirentries */
+			 long    __dd_rewind;  /* magic cookie for rewinding */
+			 int     __dd_flags;   /* flags for readdir */
+			 pthread_mutex_t __dd_lock; /* for thread locking */
+			 struct _telldir *__dd_td; /* telldir position recording */
+	 } DIR;
+dirent:
+	(define _DARWIN_USE_64_BIT_INODE before including header files, see stat(2))
+	 /*
+	  * The dirent structure defines the format of directory entries.
+	  *
+	  * A directory entry has a struct dirent at the front of it, containing its
+	  * inode number, the length of the entry, and the length of the name
+	  * contained in the entry.  These are followed by the name padded to a 4
+	  * byte boundary with null bytes.  All names are guaranteed null terminated.
+	  * The maximum length of a name in a directory is 1023.
+	  */
+
+	 struct dirent { /* when _DARWIN_FEATURE_64_BIT_INODE is defined */
+			 ino_t      d_fileno;     /* file number of entry */
+			 __uint64_t d_seekoff;    /* seek offset (optional, used by servers) */
+			 __uint16_t d_reclen;     /* length of this record */
+			 __uint16_t d_namlen;     /* length of string in d_name */
+			 __uint8_t  d_type;       /* file type, see below */
+			 char    d_name[1024];    /* name must be no longer than this */
+	 };
+
+	 /*
+	  * File types
+	  */
+	 #define DT_UNKNOWN       0
+	 #define DT_FIFO          1
+	 #define DT_CHR           2
+	 #define DT_DIR           4
+	 #define DT_BLK           6
+	 #define DT_REG           8
+	 #define DT_LNK          10
+	 #define DT_SOCK         12
+	 #define DT_WHT          14
+
+
+opendir		DIR *opendir(const char *filename);
+
+The opendir() function opens the directory named by filename, associates a directory stream with it and returns a pointer to be used to identify the
+directory stream in subsequent operations.  The pointer NULL is returned if filename cannot be accessed, or if it cannot malloc(3) enough memory to hold the
+whole thing, and sets the global variable errno to indicate the error.
+
+
+readdir		struct dirent *readdir(DIR *dirp);
+
+The readdir() function returns a pointer to the next directory entry.  It returns NULL upon reaching the end of the directory or on error.  In the event of
+an error, errno may be set to any of the values documented for the getdirentries(2) system call.  Note that the order of the directory entries vended by
+readdir() is not specified. Some filesystems may return entries in lexicographic sort order and others may not.
+
+
+closedir	int closedir(DIR *dirp);
+
+The closedir() function closes the named directory stream and frees the structure associated with the dirp pointer, returning 0 on success.  On failure, -1
+is returned and the global variable errno is set to indicate the error.
+
+
+stat		int stat(const char *restrict path, struct stat *restrict buf);
+
+The stat() function obtains information about the file pointed to by path.  Read, write or execute permission of the named file is not required, but all
+directories listed in the path name leading to the file must be searchable.
+Upon successful completion a value of 0 is returned.  Otherwise, a value of -1 is returned and errno is set to indicate the error.
+
+The buf argument is a pointer to a stat structure as defined by <sys/stat.h> and into which information is placed concerning the file.
+	 struct stat { /* when _DARWIN_FEATURE_64_BIT_INODE is defined */
+		 dev_t           st_dev;           /* ID of device containing file */
+		 mode_t          st_mode;          /* Mode of file (see below) */
+		 nlink_t         st_nlink;         /* Number of hard links */
+		 ino_t           st_ino;           /* File serial number */
+		 uid_t           st_uid;           /* User ID of the file */
+		 gid_t           st_gid;           /* Group ID of the file */
+		 dev_t           st_rdev;          /* Device ID */
+		 struct timespec st_atimespec;     /* time of last access */
+		 struct timespec st_mtimespec;     /* time of last data modification */
+		 struct timespec st_ctimespec;     /* time of last status change */
+		 struct timespec st_birthtimespec; /* time of file creation(birth) */
+		 off_t           st_size;          /* file size, in bytes */
+		 blkcnt_t        st_blocks;        /* blocks allocated for file */
+		 blksize_t       st_blksize;       /* optimal blocksize for I/O */
+		 uint32_t        st_flags;         /* user defined flags for file */
+		 uint32_t        st_gen;           /* file generation number */
+		 int32_t         st_lspare;        /* RESERVED: DO NOT USE! */
+		 int64_t         st_qspare[2];     /* RESERVED: DO NOT USE! */
+	 };
+
+The time-related fields of struct stat are as follows:
+	 st_atime         Time when file data last accessed.  Changed by the mknod(2), utimes(2) and read(2) system calls.
+
+	 st_mtime         Time when file data last modified.  Changed by the mknod(2), utimes(2) and write(2) system calls.
+
+	 st_ctime         Time when file status was last changed (inode data modification).  Changed by the chmod(2), chown(2), link(2), mknod(2), rename(2),
+					  unlink(2), utimes(2) and write(2) system calls.
+
+	 st_birthtime     Time of file creation. Only set once when the file is created. This field is only available in the 64 bit inode variants. On filesystems
+					  where birthtime is not available, this field is set to 0 (i.e. epoch).
+
+The size-related fields of the structures are as follows:
+	 st_blksize     The optimal I/O block size for the file.
+
+	 st_blocks      The actual number of blocks allocated for the file in 512-byte units.  As short symbolic links are stored in the inode, this number may be
+					zero.
+
+The status information word st_mode has the following bits:
+	 #define S_IFMT   0170000  /* type of file */
+	 #define S_IFIFO  0010000  /* named pipe (fifo) */
+	 #define S_IFCHR  0020000  /* character special */
+	 #define S_IFDIR  0040000  /* directory */
+	 #define S_IFBLK  0060000  /* block special */
+	 #define S_IFREG  0100000  /* regular */
+	 #define S_IFLNK  0120000  /* symbolic link */
+	 #define S_IFSOCK 0140000  /* socket */
+	 #define S_IFWHT  0160000  /* whiteout */
+	 #define S_ISUID  0004000  /* set user id on execution */
+	 #define S_ISGID  0002000  /* set group id on execution */
+	 #define S_ISVTX  0001000  /* save swapped text even after use */
+	 #define S_IRUSR  0000400  /* read permission, owner */
+	 #define S_IWUSR  0000200  /* write permission, owner */
+	 #define S_IXUSR  0000100  /* execute/search permission, owner */
+
+struct timespec
+{
+  __time_t tv_sec;                /* Seconds.  */
+  __syscall_slong_t tv_nsec;        /* Nanoseconds.  */
+};
+
+(find at /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/sys/_types/_timespec.h)
+_STRUCT_TIMESPEC
+{
+	__darwin_time_t tv_sec;
+	long            tv_nsec;
+};
+
+
+lstat		int lstat(const char *restrict path, struct stat *restrict buf);
+
+The lstat() function is like stat() except in the case where the named file is a symbolic link; lstat() returns information about the link, while stat()
+returns information about the file the link references.  For symbolic links, the st_mode member contains meaningful information when used with the file type
+macros, and the st_size member contains the length of the pathname contained in the symbolic link. File mode bits and the contents of the remaining members
+of the stat structure are unspecified. The value returned in the st_size member is the length of the contents of the symbolic link, and does not count any
+trailing null.
+Upon successful completion a value of 0 is returned.  Otherwise, a value of -1 is returned and errno is set to indicate the error.
+
+
+getpwuid	struct passwd *getpwuid(uid_t uid);
+
+The function getpwuid() searches the password database for the given user uid, always returning the first one encountered.
+The function getpwuid() returns a valid pointer to a passwd structure on success or NULL if the entry is not found or if an error occurs.  If an error
+does occur, errno will be set. Note that programs must explicitly set errno to zero before calling any of these functions if they need to distinguish
+between a non-existent entry and an error.
+
+		   struct passwd {
+				   char    *pw_name;       /* user name */
+				   char    *pw_passwd;     /* encrypted password */
+				   uid_t   pw_uid;         /* user uid */
+				   gid_t   pw_gid;         /* user gid */
+				   time_t  pw_change;      /* password change time */
+				   char    *pw_class;      /* user access class */
+				   char    *pw_gecos;      /* Honeywell login info */
+				   char    *pw_dir;        /* home directory */
+				   char    *pw_shell;      /* default shell */
+				   time_t  pw_expire;      /* account expiration */
+				   int     pw_fields;      /* internal: fields filled in */
+		   };
+
+The function getpwuid() leaves results in an internal thread-specific memory and return a pointer to that object.  Subsequent calls to the same function
+will modify the same object.
+
+
+getgrgid	struct group *getgrgid(gid_t gid);
+
+The function getgrgid() searches the group database for the group id given by gid, returning the first one encountered. Identical group names, group gids,
+or uuids may result in undefined behavior.
+The function getgrgid() returns a pointer to a group structure on success or NULL if the entry is not found or if an error occurs.  If an error does occur,
+errno will be set.  Note that programs must explicitly set errno to zero before calling any of these functions if they need to distinguish between a non-
+existent entry and an error.
+
+		   struct group {
+				   char    *gr_name;       /* group name */
+				   char    *gr_passwd;     /* group password */
+				   gid_t   gr_gid;         /* group id */
+				   char    **gr_mem;       /* group members */
+		   };
+
+The function getgrgid() leaves results in an internal thread-specific memory and return a pointer to that object. Subsequent calls to the same function
+will modify the same object.
+
+
+listxattr	ssize_t listxattr(const char *path, char *namebuf, size_t size, int options);
+
+listxattr() retrieves a list of names of extended attributes associated with the given path in the file system.
+[namebuf] is a data buffer of [size] bytes for the names of the extended attributes associated with path.  The extended attribute names are simple NULL-termi-
+nated UTF-8 strings and are returned in arbitrary order. No extra padding is provided between names in the buffer. The list will only include names of
+extended attributes to which the calling process has access. The function returns the size of the list of names.
+
+[options] controls how the attribute list is generated:
+XATTR_NOFOLLOW			do not follow symbolic links.  listxattr() normally lists attributes of the target of path if it is a symbolic link. With this option,
+	listxattr() will list attributes of the link itself.
+XATTR_SHOWCOMPRESSION	listxattr() will list HFS Plus Compression extended attribute(s) (if present) for the file referred to by path or fd.
+
+If [namebuf] is set to NULL, the function returns the size of the list of extended attribute names.  This facility can be used to determine the size of a
+buffer sufficiently large to hold the names of the attributes currently associated with path.
+On success, the size of the extended attribute name list is returned.  If no accessible extended attributes are associated with the given [path], the
+function returns zero.  On failure, -1 is returned and the global variable [errno] is set as per (man listxattr).
+
+
+getxattr	ssize_t getxattr(const char *path, const char *name, void *value, size_t size, u_int32_t position, int options);
+
+The getxattr() function retrieves up to [size] bytes of data from the extended attribute identified by [name] associated with path into the pre-allocated buffer
+pointed to by [value]. The function returns the number of bytes of data retrieved.
+An extended attribute's [name] is a simple NULL-terminated UTF-8 string. [position] specifies an offset within the extended attribute. In the current implemen-
+tation, this argument is only used with the resource fork attribute. For all other extended attributes, this parameter is reserved and should be zero.
+On success, [value] contains the data associated with [name]. When [value] is set to NULL, getxattr() returns current size of the named attribute. This facility
+can be used to determine the size of a buffer sufficiently large to hold the data currently associated with the attribute.
+
+[options] specify options for retrieving extended attributes:
+XATTR_NOFOLLOW			do not follow symbolic links.  getxattr() normally returns information from the target of path if it is a symbolic link.  With this option,
+	getxattr() will return extended attribute data from the symbolic link instead.
+XATTR_SHOWCOMPRESSION	getxattr() will return HFS Plus Compression extended attribute name (if present) for the file referred to by path or fd.
+
+On success, the size of the extended attribute data is returned.  On failure, -1 is returned and the global variable [errno] is set as per (man getxattr)
+
+
+time		time_t time(time_t *tloc);
+
+The time() function returns the value of time in seconds since 0 hours, 0 minutes, 0 seconds, January 1, 1970, Coordinated Universal Time, without including
+leap seconds.  If an error occurs, time() returns the value (time_t)-1.
+The return value is also stored in *tloc, provided that tloc is non-null.
+
+
+ctime		char *ctime(const time_t *clock);
+
+The function ctime() takes as an argument a time value representing the time in seconds since the Epoch (00:00:00 UTC, January 1, 1970; see time(3)). When encountering
+an error, these functions return NULL and set errno to an appropriate value.
+The ctime() function adjusts the time value for the current time zone, in the same manner as localtime(). It returns a pointer to a 26-character string of the form:
+	Thu Nov 24 18:22:48 1986\n\0
+All of the fields have constant width.
+These functions leave their result in an internal static object and return a pointer to that object. Subsequent calls to these functions will modify the same object.
+
+
+readlink	ssize_t readlink(const char *restrict path, char *restrict buf, size_t bufsize);
+
+readlink() places the contents of the symbolic link path in the buffer buf, which has size bufsize. Readlink does not append a NUL character to buf.
+The call returns the count of characters placed in the buffer if it succeeds, or a -1 if an error occurs, placing the error code in the global variable errno.
+
+
+perror		void perror(const char *s);
+
+The perror() function looks up the error message string corresponding to an error number.
+The perror() function finds the error message corresponding to the current value of the global variable errno (intro(2)) and writes it, followed by a new-
+line, to the standard error file descriptor.  If the argument s is non-NULL and does not point to the null character, this string is prepended to the message
+string and separated from it by a colon and space (``: ''); otherwise, only the error message string is printed.
+
+If the error number is not recognized, these functions return an error message string containing ``Unknown error: '' followed by the error number in decimal.
+
+
+strerror	char *strerror(int errnum);
+
+The strerror() function looks up the error message string corresponding to an error number.
+The strerror() function accepts an error number argument [errnum] and returns a pointer to the corresponding message string.
+If the error number is not recognized, these functions return an error message string containing ``Unknown error: '' followed by the error number in decimal.
+The strerror() function returns EINVAL as a warning. Error numbers recognized by this implementation fall in the range 0 <= errnum < sys_nerr.
+For unknown error numbers, the strerror() function will return its result in a static buffer which may be overwritten by subsequent calls.
+
+
+exit		void exit(int status);
+
+exit() terminates a process. The exit() function never returns.
