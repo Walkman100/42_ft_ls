@@ -12,6 +12,28 @@
 
 #include "../ft_ls.h"
 
+#ifdef linux
+
+void	set_attributes(t_elem *item)
+{
+	struct stat	stat_s;
+
+	lstat((*item).name, &stat_s);
+	(*item).atime = stat_s.st_atim.tv_sec;
+	(*item).mtime = stat_s.st_mtim.tv_sec;
+	(*item).type = get_type(stat_s.st_mode);
+	(*item).perms = get_perms(stat_s.st_mode);
+	(*item).inodes = stat_s.st_nlink;
+	(*item).user = parse_user(stat_s.st_uid);
+	(*item).group = parse_group(stat_s.st_gid);
+	(*item).fsize = stat_s.st_size;
+	(*item).date = get_last_modified(stat_s.st_mtimespec);
+	if ((*item).type = 'l')
+		(*item).ln_target = get_slink_target((*item).name, stat_s.st_size);
+}
+
+#else
+
 void	set_attributes(t_elem *item)
 {
 	struct stat	stat_s;
@@ -29,6 +51,8 @@ void	set_attributes(t_elem *item)
 	if ((*item).type = 'l')
 		(*item).ln_target = get_slink_target((*item).name, stat_s.st_size);
 }
+
+#endif
 
 t_elem	*get_folder_long(char *path, t_args args)
 {

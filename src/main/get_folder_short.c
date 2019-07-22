@@ -12,6 +12,20 @@
 
 #include "../ft_ls.h"
 
+#ifdef linux
+
+void	set_attributes(t_elem *item)
+{
+	struct stat	stat_s;
+
+	lstat((*item).name, &stat_s);
+	(*item).atime = stat_s.st_atim.tv_sec;
+	(*item).mtime = stat_s.st_mtim.tv_sec;
+	(*item).type = get_type(stat_s.st_mode);
+}
+
+#else
+
 void	set_attributes(t_elem *item)
 {
 	struct stat	stat_s;
@@ -21,6 +35,8 @@ void	set_attributes(t_elem *item)
 	(*item).mtime = stat_s.st_mtimespec.tv_sec;
 	(*item).type = get_type(stat_s.st_mode);
 }
+
+#endif
 
 t_elem	*get_folder_short(char *path, t_args args)
 {

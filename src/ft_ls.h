@@ -13,17 +13,27 @@
 #ifndef FT_LS_H
 # define FT_LS_H
 # define _DARWIN_USE_64_BIT_INODE 1
+
 # include <unistd.h>
 # include <dirent.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <pwd.h>
 # include <grp.h>
-# include <uuid/uuid.h>
 # include <sys/xattr.h>
 # include <time.h>
 # include <stdlib.h>
 # include <stdio.h>
+# ifdef linux
+#  include <linux/uuid.h>
+# else
+#  include <uuid/uuid.h>
+# endif
+
+/*
+** on linux, strerror needs string.h...
+*/
+# include <string.h>
 # include "../libft/libft.h"
 
 typedef struct	s_args
