@@ -6,18 +6,18 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/07/22 11:23:44 by mcarter          ###   ########.fr        #
+#    Updated: 2019/07/22 13:37:42 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GCCFLAGS = -Wall -Wextra -Werror
 NAME = ft_ls
-SRC = src/func/get_item_count.c src/func/get_last_modified.c get_slink_target.c \
+SRC = src/func/get_folder_count.c src/func/get_last_modified.c get_slink_target.c \
 		src/func/parse_group.c src/func/parse_mode.c src/func/parse_user.c \
 		src/main/get_folder_long.c src/main/get_folder_short.c src/main/main.c \
 		src/main/parse_args.c src/main/show_folder src/main/sort.c \
 		src/output/output_columns.c src/output/output_line.c src/output/pad.c
-OFILES = bin/get_item_count.o bin/get_last_modified.o bin/get_slink_target.o \
+OFILES = bin/get_folder_count.o bin/get_last_modified.o bin/get_slink_target.o \
 		bin/parse_group.o bin/parse_mode.o bin/parse_user.o bin/get_folder_long.o \
 		bin/get_folder_short.o bin/main.o bin/parse_args.o bin/show_folder.o \
 		bin/sort.o bin/output_columns.o bin/output_line.o bin/pad.o
@@ -48,9 +48,9 @@ norm:
 # Individual files
 
 #  func/
-bin/get_item_count.o: $(HFILE) src/func/get_item_count.c
+bin/get_folder_count.o: $(HFILE) src/func/get_folder_count.c
 	@mkdir -p bin
-	gcc $(GCCFLAGS) -c src/func/get_item_count.c -o bin/get_item_count.o
+	gcc $(GCCFLAGS) -c src/func/get_folder_count.c -o bin/get_folder_count.o
 
 bin/get_last_modified.o: $(HFILE) src/func/get_last_modified.c
 	@mkdir -p bin

@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 12:29:14 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/22 13:38:32 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_elem	*get_folder_long(char *path, t_args args)
 	int				i;
 
 	dirp = opendir(path);
-	dircount = get_item_count(path, args.all);
+	dircount = get_folder_count(path, args.all);
 	items = (t_elem *)ft_memalloc((dircount + 1) * sizeof(t_elem));
 	i = 0;
 	while ((dir_ent = readdir(dirp)) != NULL)

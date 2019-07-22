@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_item_count.c                                   :+:      :+:    :+:   */
+/*   get_folder_count.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 10:25:43 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 10:39:54 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/22 13:37:03 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **  2 = no . and .. entries
 */
 
-MAXUNBR	get_item_count(char *path, char all)
+MAXUNBR	get_folder_count(char *path, char all)
 {
 	DIR				*dirp;
 	struct dirent	*dir_ent;
