@@ -6,8 +6,13 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:30 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/18 14:05:33 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/18 16:28:09 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
+
+void	output_line(t_elem elem, t_args args)
+{
+	
+}

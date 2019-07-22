@@ -6,8 +6,18 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:34 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/18 14:05:40 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/18 16:29:07 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
+
+char	get_type(mode_t mode)
+{
+	
+}
+
+char	*get_perms(mode_t mode)
+{
+	
+}

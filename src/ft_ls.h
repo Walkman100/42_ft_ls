@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/18 16:41:42 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/22 11:37:13 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,22 @@ typedef struct	s_elem
 	char	*ln_target;
 }				t_elem;
 
-t_args			parse_args(char *arg_str);
+void			parse_args(t_args *args, char *arg_str);
 void			show_folder(char *path, t_args args);
 
 t_elem			*get_folder_short(char *path, t_args args);
-void			output_columns(t_args args, t_elem *elems);
+void			output_columns(t_elem *elems, t_args args);
 
 t_elem			*get_folder_long(char *path, t_args args);
-char			*parse_mode(mode_t mode);
+MAXUNBR			get_item_count(char *path, char all);
+char			get_type(mode_t mode);
+char			*get_perms(mode_t mode);
 char			*parse_user(uid_t uid);
 char			*parse_group(gid_t gid);
 char			*get_last_modified(struct timespec tspec);
-void			sort_elem_array(t_elem *arr);
-void			output_line(t_args args, t_elem elem);
+char			*get_slink_target(char *path, MAXUNBR tlen);
+void			sort_elem_array(t_elem *arr, t_args args);
+void			output_line(t_elem elem, t_args args);
 void			putnbr_padl(MAXUNBR n, MAXUNBR total_len);
 void			putstr_padr(char *s, MAXUNBR total_len);
 #endif

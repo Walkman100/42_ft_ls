@@ -6,8 +6,13 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:15 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/18 14:04:39 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/22 11:30:29 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
+
+t_elem	*get_folder_short(char *path, t_args args)
+{
+	
+}

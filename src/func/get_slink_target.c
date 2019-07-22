@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_folder_long.c                                  :+:      :+:    :+:   */
+/*   get_slink_target.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 11:56:09 by mcarter          ###   ########.fr       */
+/*   Created: 2019/07/22 11:21:33 by mcarter           #+#    #+#             */
+/*   Updated: 2019/07/22 11:54:58 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-t_elem	*get_folder_long(char *path, t_args args)
+char	*get_slink_target(char *path, MAXUNBR targetlen)
 {
 	
 }

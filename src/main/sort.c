@@ -6,8 +6,13 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:13 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/18 14:05:17 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/18 16:31:21 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
+
+void	sort_elem_array(t_elem *arr, t_args args)
+{
+	
+}

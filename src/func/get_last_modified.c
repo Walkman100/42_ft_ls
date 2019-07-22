@@ -6,8 +6,13 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:51 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/18 14:36:49 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/18 16:30:08 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
+
+char	*get_last_modified(struct timespec tspec)
+{
+	
+}

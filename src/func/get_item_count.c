@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_folder_long.c                                  :+:      :+:    :+:   */
+/*   get_item_count.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 11:56:09 by mcarter          ###   ########.fr       */
+/*   Created: 2019/07/22 10:25:43 by mcarter           #+#    #+#             */
+/*   Updated: 2019/07/22 10:39:54 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-t_elem	*get_folder_long(char *path, t_args args)
+MAXUNBR	get_item_count(char *path, char all)
 {
 	
 }
