@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 19:38:14 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 10:01:16 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/22 12:08:45 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ int		main(int argc, char **argv)
 		else if (args.recursive)
 			ft_putstr("Not implemented\n");
 		else
+		{
+			got_path = 1;
 			show_folder(argv[i], args);
+		}
 		i++;
 	}
 	if (!got_path)

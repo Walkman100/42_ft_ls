@@ -14,5 +14,24 @@
 
 void	show_folder(char *path, t_args args)
 {
-	
+	t_elem	*items;
+	int		i;
+
+	if (args.long_list == 0)
+	{
+		items = get_folder_short(path, args);
+		sort_elem_array(items, args);
+		output_columns(items, args);
+	}
+	else
+	{
+		items = get_folder_long(path, args);
+		sort_elem_array(items, args);
+		i = 0;
+		while (items[i].name)
+		{
+			output_line(items[i], args);
+			i++;
+		}
+	}
 }
