@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 13:37:30 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/22 15:49:19 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,22 @@ typedef struct	s_elem
 	char	*ln_target;
 }				t_elem;
 
+typedef struct	s_colinfo
+{
+	size_t	cols;
+	size_t	lines;
+	size_t	elem_count;
+	size_t	maxwidth;
+}				t_colinfo;
+
 void			parse_args(t_args *args, char *arg_str);
 void			show_folder(char *path, t_args args);
 
 t_elem			*get_folder_short(char *path, t_args args);
 void			output_columns(t_elem *elems, t_args args);
+
+t_colinfo		get_column_info(t_elem *elems);
+size_t			get_elem_count(t_elem *elems);
 
 t_elem			*get_folder_long(char *path, t_args args);
 MAXUNBR			get_folder_count(char *path, char all);
