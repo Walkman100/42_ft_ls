@@ -29,6 +29,9 @@ sort_access
 use array with structures as elements, so can be sorted easily
 
 	element structure:
+elem->atime
+elem->mtime (for sorting)
+elem->type -(file),d,l,s,p,b,c
 elem->perms
 elem->inodes
 elem->user
@@ -48,9 +51,10 @@ ls
 	foreach item in array
 	  output_line(args_struct, elem_struct)
 
+
 get_folder_short (returns array of elements)
-	get_filename
-  filter
+  get_filename
+	filter
 get_folder_long (returns array of elements)
   use opendir() to get DIR struct
   use readdir(DIR) in loop to get all entries
@@ -59,13 +63,14 @@ get_folder_long (returns array of elements)
 		file name
 	stat(filename)
 	  stat struct holds:
-		mode (permissions)
+		mode (permissions, filetype)
 		number of links(inodes)
 		UID
 		GID
 		times
 		file size (bytes)
-	parse_mode (get perms)
+	get_type (f,d,l e.t.c.)
+	get_perms
 	parse_user (get user)
 	parse_group (get group)
 	set size (instruction)
@@ -73,7 +78,7 @@ get_folder_long (returns array of elements)
 	  grab seconds from struct, check difference from current time,
 	  get string from seconds, edit string appropriately
 	set filename (instruction)
-	if (stat_struct->mode/dirent_struct->type contains symlink)
+	if (stat_struct->mode /* dirent_struct->type */ contains symlink)
 	  set symlink target
 sort_array
 output_array

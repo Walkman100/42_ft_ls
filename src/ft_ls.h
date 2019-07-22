@@ -42,6 +42,9 @@ typedef struct	s_args
 
 typedef struct	s_elem
 {
+	time_t	atime;
+	time_t	mtime;
+	char	type;
 	char	*perms;
 	nlink_t	inodes;
 	char	*user;

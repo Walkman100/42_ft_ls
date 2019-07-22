@@ -14,5 +14,19 @@
 
 char	*get_slink_target(char *path, MAXUNBR targetlen)
 {
-	
+	char	*rtn;
+	int		len;
+
+	rtn = ft_memalloc((targetlen + 1) * sizeof(*rtn));
+	if ((len = readlink(path, rtn, targetlen + 1)) != -1)
+	{
+		rtn[len] = '\0';
+		return (rtn);
+	}
+	else
+	{
+		perror("ft_ls (get_slink_target)");
+		free(rtn);
+		return (ft_strjoin("Error: ", strerror(errno)));
+	}
 }
