@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 11:56:09 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/22 12:29:14 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	set_attributes(t_elem *item)
 	(*item).group = parse_group(stat_s.st_gid);
 	(*item).fsize = stat_s.st_size;
 	(*item).date = get_last_modified(stat_s.st_mtimespec);
-	if ((*item).type = 'l')
+	if ((*item).type == 'l')
 		(*item).ln_target = get_slink_target((*item).name, stat_s.st_size);
 }
 
@@ -48,7 +48,7 @@ void	set_attributes(t_elem *item)
 	(*item).group = parse_group(stat_s.st_gid);
 	(*item).fsize = stat_s.st_size;
 	(*item).date = get_last_modified(stat_s.st_mtimespec);
-	if ((*item).type = 'l')
+	if ((*item).type == 'l')
 		(*item).ln_target = get_slink_target((*item).name, stat_s.st_size);
 }
 
