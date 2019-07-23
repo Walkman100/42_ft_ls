@@ -6,28 +6,28 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 13:38:32 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/23 16:54:03 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-#ifdef linux
+#ifdef __linux__
 
 void	set_attributes(t_elem *item)
 {
 	struct stat	stat_s;
 
 	lstat((*item).name, &stat_s);
-	(*item).atime = stat_s.st_atim.tv_sec;
-	(*item).mtime = stat_s.st_mtim.tv_sec;
+	(*item).atime = stat_s.st_atime;
+	(*item).mtime = stat_s.st_mtime;
 	(*item).type = get_type(stat_s.st_mode);
 	(*item).perms = get_perms(stat_s.st_mode);
 	(*item).inodes = stat_s.st_nlink;
 	(*item).user = parse_user(stat_s.st_uid);
 	(*item).group = parse_group(stat_s.st_gid);
 	(*item).fsize = stat_s.st_size;
-	(*item).date = get_last_modified(stat_s.st_mtimespec);
+	(*item).date = get_last_modified(stat_s.st_mtim);
 	if ((*item).type == 'l')
 		(*item).ln_target = get_slink_target((*item).name, stat_s.st_size);
 }
