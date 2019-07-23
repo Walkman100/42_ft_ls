@@ -6,7 +6,7 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/07/22 15:01:19 by mcarter          ###   ########.fr        #
+#    Updated: 2019/07/23 20:57:00 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ bin/get_folder_short.o: $(HFILE) src/main/get_folder_short.c
 	gcc $(GCCFLAGS) -c src/main/get_folder_short.c -o bin/get_folder_short.o
 
 bin/main.o: $(HFILE) src/main/main.c
-	@mkdir -p main
+	@mkdir -p bin
 	gcc $(GCCFLAGS) -c src/main/main.c -o bin/main.o
 
 bin/parse_args.o: $(HFILE) src/main/parse_args.c
