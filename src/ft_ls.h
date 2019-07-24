@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 15:49:19 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/24 16:21:58 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@
 
 typedef struct	s_args
 {
-	char	long_list;
-	char	all;
-	char	noowner;
-	char	no_recurse;
-	char	recursive;
-	char	no_sort;
-	char	reverse_sort;
-	char	sort_time;
-	char	sort_access;
-	char	colour;
+	char	long_list : 1;
+	char	all : 2;
+	char	noowner : 1;
+	char	no_recurse : 1;
+	char	recursive : 1;
+	char	no_sort : 1;
+	char	reverse_sort : 1;
+	char	sort_time : 1;
+	char	sort_access : 1;
+	char	colour : 1;
 }				t_args;
 
 typedef struct	s_elem

@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:22 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/23 17:21:38 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/24 16:28:19 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	output_columns(t_elem *elems, t_args args)
 	size_t		i;
 
 	colinfo = get_column_info(elems);
+	i = 0;
 	while (i < colinfo.lines)
 	{
 		output_column_n(elems, args.colour, colinfo, i);
