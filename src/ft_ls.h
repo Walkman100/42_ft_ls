@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/24 17:19:03 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/24 17:52:23 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@
 */
 # include <string.h>
 # include "../libft/libft.h"
+
+/*
+** all:
+** 0 = false
+** 1 = true
+** -1 = no . and ..
+*/
 
 typedef struct	s_args
 {
@@ -92,6 +99,7 @@ char			*get_last_modified(time_t seconds);
 char			*get_slink_target(char *path, MAXUNBR tlen);
 void			sort_elem_array(t_elem *arr, t_args args);
 void			output_line(t_elem elem, t_args args);
+
 void			putnbr_padl(MAXUNBR n, MAXUNBR total_len);
 void			putstr_padr(char *s, MAXUNBR total_len);
 void			output_colour(char type);
