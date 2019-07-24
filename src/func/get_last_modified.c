@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:51 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 13:14:36 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/24 17:18:54 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@
 **  Nov 24 18:22\0
 */
 
-char	*get_last_modified(struct timespec tspec)
+char	*get_last_modified(time_t seconds)
 {
-	time_t	seconds;
 	time_t	age;
 	char	*tmp;
 	char	*rtn;
 
-	seconds = tspec.tv_sec;
 	age = time(NULL) - seconds;
 	age = labs(age);
 	tmp = ft_strsub(ctime(&seconds), 4, 20);

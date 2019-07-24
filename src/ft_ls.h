@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/24 17:04:40 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/24 17:19:03 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char			get_type(mode_t mode);
 char			*get_perms(mode_t mode);
 char			*parse_user(uid_t uid);
 char			*parse_group(gid_t gid);
-char			*get_last_modified(struct timespec tspec);
+char			*get_last_modified(time_t seconds);
 char			*get_slink_target(char *path, MAXUNBR tlen);
 void			sort_elem_array(t_elem *arr, t_args args);
 void			output_line(t_elem elem, t_args args);
