@@ -6,7 +6,7 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/07/23 20:57:00 by mcarter          ###   ########.fr        #
+#    Updated: 2019/07/24 17:03:30 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,13 @@ SRC = src/func/get_column_info.c src/func/get_elem_count.c \
 		src/func/get_slink_target.c src/func/parse_group.c src/func/parse_mode.c \
 		src/func/parse_user.c src/main/get_folder_long.c \
 		src/main/get_folder_short.c src/main/main.c src/main/parse_args.c \
-		src/main/show_folder.c src/main/sort.c src/output/output_columns.c \
-		src/output/output_line.c src/output/pad.c
+		src/main/show_folder.c src/main/sort.c src/output/output_colour.c \
+		src/output/output_columns.c src/output/output_line.c src/output/pad.c
 OFILES = bin/get_column_info.o bin/get_elem_count.o bin/get_folder_count.o \
 		bin/get_last_modified.o bin/get_slink_target.o bin/parse_group.o \
 		bin/parse_mode.o bin/parse_user.o bin/get_folder_long.o \
 		bin/get_folder_short.o bin/main.o bin/parse_args.o bin/show_folder.o \
-		bin/sort.o bin/output_columns.o bin/output_line.o bin/pad.o
+		bin/sort.o bin/output_colour.o bin/output_columns.o bin/output_line.o bin/pad.o
 HFILE = src/ft_ls.h
 LFT = -L libft -lft
 LFTA = libft/libft.a
@@ -109,6 +109,10 @@ bin/sort.o: $(HFILE) src/main/sort.c
 	gcc $(GCCFLAGS) -c src/main/sort.c -o bin/sort.o
 
 #  output/
+bin/output_colour.o: $(HFILE) src/output/output_colour.c
+	@mkdir -p bin
+	gcc $(GCCFLAGS) -c src/output/output_colour.c -o bin/output_colour.o
+
 bin/output_columns.o: $(HFILE) src/output/output_columns.c
 	@mkdir -p bin
 	gcc $(GCCFLAGS) -c src/output/output_columns.c -o bin/output_columns.o
