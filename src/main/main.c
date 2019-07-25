@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 19:38:14 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 12:08:45 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/25 11:25:54 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_args(t_args *args)
 	(*args).all = 0;
 	(*args).noowner = 0;
 	(*args).no_recurse = 0;
+	(*args).recursive = 0;
 	(*args).no_sort = 0;
 	(*args).reverse_sort = 0;
 	(*args).sort_time = 0;
@@ -36,8 +37,8 @@ int		main(int argc, char **argv)
 	got_path = 0;
 	while (i < argc)
 	{
-		if (ft_strncmp(argv[i], "-", 1) == 0)
-			parse_args(&args, argv[i]);
+		if (argv[i][0] == '-')
+			parse_args(&args, argv[i] + 1);
 		else if (args.recursive)
 			ft_putstr("Not implemented\n");
 		else

@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 16:33:01 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/24 17:51:24 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/25 11:26:41 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void	parse_args(t_args *args, char *arg_str)
 			(*args).sort_access = 1;
 		else if (*arg_str == 'G')
 			(*args).colour = 1;
+		arg_str++;
 	}
 }
