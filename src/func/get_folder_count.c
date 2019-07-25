@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 10:25:43 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/24 17:53:58 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/25 12:24:53 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ MAXUNBR	get_folder_count(char *path, char all)
 	i = 0;
 	while ((dir_ent = readdir(dirp)) != NULL)
 	{
-		if (all || ft_strncmp(dir_ent->d_name, ".", 1) != 0)
+		if (all || dir_ent->d_name[0] != '.')
 		{
-			if (all != -1 || (ft_strcmp(dir_ent->d_name, ".") != 0 && \
+			if (all != 2 || (ft_strcmp(dir_ent->d_name, ".") != 0 && \
 							ft_strcmp(dir_ent->d_name, "..") != 0))
 				i++;
 		}
