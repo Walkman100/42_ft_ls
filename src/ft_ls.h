@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/26 13:23:59 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/26 16:45:22 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,13 @@ MAXUNBR			get_folder_count(char *path, char all);
 void			sort_elem_array(t_elem *arr, t_args args);
 
 void			set_attributes_short(t_elem *item);
+char			get_type(mode_t *mode);
 void			output_columns(t_elem *elems, t_args args);
 t_colinfo		get_column_info(t_elem *elems);
 size_t			get_elem_count(t_elem *elems);
 
 void			set_attributes_long(t_elem *item);
-char			get_type(mode_t mode);
-char			*get_perms(mode_t mode);
+void			parse_mode(mode_t mode, char *type, char **perms);
 char			*parse_user(uid_t uid);
 char			*parse_group(gid_t gid);
 char			*get_last_modified(time_t seconds);

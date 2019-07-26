@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:19:57 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/26 11:21:00 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/26 16:53:08 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	set_attributes_long(t_elem *item)
 	lstat((*item).name, &stat_s);
 	(*item).atime = stat_s.st_atime;
 	(*item).mtime = stat_s.st_mtime;
-	(*item).type = get_type(stat_s.st_mode);
-	(*item).perms = get_perms(stat_s.st_mode);
+	parse_mode(stat_s.st_mode, &(*item).type, &(*item).perms);
 	(*item).inodes = stat_s.st_nlink;
 	(*item).user = parse_user(stat_s.st_uid);
 	(*item).group = parse_group(stat_s.st_gid);
@@ -41,8 +40,7 @@ void	set_attributes_long(t_elem *item)
 	lstat((*item).name, &stat_s);
 	(*item).atime = stat_s.st_atimespec.tv_sec;
 	(*item).mtime = stat_s.st_mtimespec.tv_sec;
-	(*item).type = get_type(stat_s.st_mode);
-	(*item).perms = get_perms(stat_s.st_mode);
+	parse_mode(stat_s.st_mode, &(*item).type, &(*item).perms);
 	(*item).inodes = stat_s.st_nlink;
 	(*item).user = parse_user(stat_s.st_uid);
 	(*item).group = parse_group(stat_s.st_gid);

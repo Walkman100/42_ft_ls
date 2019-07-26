@@ -95,8 +95,11 @@ main:
 			set_attributes_short
 				get_type
 			set_attributes_long
-				get_type //
-				get_perms //
+				parse_mode
+					get_type
+					set_perms
+					get_xattr (@) //
+					get_acl (+) //
 				parse_user
 				parse_group
 				get_last_modified
