@@ -6,7 +6,7 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/07/24 17:03:30 by mcarter          ###   ########.fr        #
+#    Updated: 2019/07/26 10:37:07 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ fclean: clean
 re: fclean all
 
 norm:
-	norminette -R CheckForbiddenSourceHeader $(HFILE) $(SRC)
+	norminette $(HFILE) $(SRC)
 
 # Individual files
 

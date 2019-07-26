@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 16:31:15 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/25 15:40:35 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/26 11:11:37 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,15 @@
 ** bold yellow, black		CHR		character device driver
 ** white, red				SETUID	file that is setuid (u+s)
 ** black, yellow			SETGID	file that is setgid (g+s)
-** black, green		STICKY_OTHER_WRITABLE	dir that is sticky and other-writable (+t,o+w)
-** blue, green				OTHER_WRITABLE	dir that is other-writable (o+w) and not sticky
-** white, blue				STICKY	dir with the sticky bit set (+t) and not other-writable
+** black, green		STICKY_OTHER_WRITABLE	dir that is sticky and
+**														other-writable (+t,o+w)
+** blue, green				OTHER_WRITABLE	dir that is other-writable (o+w) and
+**														not sticky
+** white, blue				STICKY	dir with the sticky bit set (+t) and not
+**														other-writable
 ** bold magenta, default	DOOR	door
-** bold red, black			ORPHAN	symlink to nonexistent file, or non-stat'able file ...
+** bold red, black			ORPHAN	symlink to nonexistent file, or
+**														non-stat'able file ...
 ** 0, 0						MISSING	... and the files they point to
 ** black, red				CAPABILITY	file with capability
 **
@@ -60,7 +64,7 @@ void	output_colour(char type)
 	else if (type == 'p')
 		put_clr(YELLOW);
 	else if (type == 'b')
-		put_clr(BLUE BCK_CYAN);
+		put_clr(BLUE "" BCK_CYAN);
 	else if (type == 'c')
-		put_clr(BLUE BCK_YELLOW);
+		put_clr(BLUE "" BCK_YELLOW);
 }

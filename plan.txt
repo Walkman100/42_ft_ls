@@ -17,7 +17,7 @@ bonus:
 (all char bool)
 long
 recursive
-all (0=false, 1=true, -1=no . and ..)
+all (0=false, 1=true, 2=no . and ..)
 reverse_sort
 sort_time
 colour
