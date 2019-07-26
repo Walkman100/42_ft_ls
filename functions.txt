@@ -133,21 +133,27 @@ The size-related fields of the structures are as follows:
 					zero.
 
 The status information word st_mode has the following bits:
-	 #define S_IFMT   0170000  /* type of file */
-	 #define S_IFIFO  0010000  /* named pipe (fifo) */
-	 #define S_IFCHR  0020000  /* character special */
-	 #define S_IFDIR  0040000  /* directory */
-	 #define S_IFBLK  0060000  /* block special */
-	 #define S_IFREG  0100000  /* regular */
-	 #define S_IFLNK  0120000  /* symbolic link */
-	 #define S_IFSOCK 0140000  /* socket */
-	 #define S_IFWHT  0160000  /* whiteout */
-	 #define S_ISUID  0004000  /* set user id on execution */
-	 #define S_ISGID  0002000  /* set group id on execution */
-	 #define S_ISVTX  0001000  /* save swapped text even after use */
-	 #define S_IRUSR  0000400  /* read permission, owner */
-	 #define S_IWUSR  0000200  /* write permission, owner */
-	 #define S_IXUSR  0000100  /* execute/search permission, owner */
+	 #define S_IFMT   0170000	61440	/* type of file */
+	 #define S_IFWHT  0160000	57344	/* whiteout */
+	 #define S_IFSOCK 0140000	49152	/* socket */
+	 #define S_IFLNK  0120000	40960	/* symbolic link */
+	 #define S_IFREG  0100000	32768	/* regular */
+	 #define S_IFBLK  0060000	24576	/* block special */
+	 #define S_IFDIR  0040000	16384	/* directory */
+	 #define S_IFCHR  0020000	8192	/* character special */
+	 #define S_IFIFO  0010000	4096	/* named pipe (fifo) */
+	 #define S_ISUID  0004000	2048	/* set user id on execution */
+	 #define S_ISGID  0002000	1024	/* set group id on execution */
+	 #define S_ISVTX  0001000	512		/* save swapped text even after use */		STICKY BIT (see man 2 chmod)
+	 #define S_IRUSR  0000400	256		/* read permission, owner */
+	 #define S_IWUSR  0000200	128		/* write permission, owner */
+	 #define S_IXUSR  0000100	64		/* execute/search permission, owner */
+	 #define S_IRGRP  0000040	32		/* R for group */
+	 #define S_IWGRP  0000020	16		/* W for group */
+	 #define S_IXGRP  0000010	8		/* X for group */
+	 #define S_IROTH  0000004	4		/* R for other */
+	 #define S_IWOTH  0000002	2		/* W for other */
+	 #define S_IXOTH  0000001	1		/* X for other */
 
 struct timespec
 {
