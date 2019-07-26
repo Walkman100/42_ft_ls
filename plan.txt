@@ -84,6 +84,33 @@ sort_array
 output_array
 
 
+current structure:
+main:
+	init_args
+	parse_args
+	recursion //
+	show_folder
+		get_folder
+			get_folder_count
+			set_attributes_short
+				get_type
+			set_attributes_long
+				get_type //
+				get_perms //
+				parse_user
+				parse_group
+				get_last_modified
+				get_slink_target
+		sort_elem_array //
+		output_columns
+			get_column_info
+				get_max_width
+				get_elem_count
+			output_column_n
+				output_colour
+		output_line
+
+
 allowed functions:
 write         ssize_t write(int fd, const void *buf, size_t nbyte);
 opendir       DIR *opendir(const char *filename);
