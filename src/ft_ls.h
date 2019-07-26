@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/26 11:49:26 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/26 13:23:59 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,16 @@ typedef struct	s_colinfo
 	size_t	maxwidth;
 }				t_colinfo;
 
+typedef struct	s_lineinfo
+{
+	MAXUNBR	elem_count;
+	MAXUNBR	inodew;
+	MAXUNBR	userw;
+	MAXUNBR	groupw;
+	MAXUNBR	fsizew;
+	MAXUNBR	namew;
+}				t_lineinfo;
+
 void			parse_args(t_args *args, char *arg_str);
 void			show_folder(char *path, t_args args);
 t_elem			*get_folder(char *path, t_args args);
@@ -99,7 +109,8 @@ char			*parse_user(uid_t uid);
 char			*parse_group(gid_t gid);
 char			*get_last_modified(time_t seconds);
 char			*get_slink_target(char *path, MAXUNBR tlen);
-void			output_line(t_elem elem, t_args args);
+void			output_lines(t_elem *elems, t_args args);
+t_lineinfo		get_line_info(t_elem *elems);
 
 void			putnbr_padl(MAXUNBR n, MAXUNBR total_len);
 void			putstr_padr(char *s, MAXUNBR total_len);
