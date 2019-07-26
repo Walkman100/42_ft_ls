@@ -108,7 +108,12 @@ main:
 				get_elem_count
 			output_column_n
 				output_colour
-		output_line
+		output_lines
+			get_line_info
+			output_line
+				putnbr_padl
+				putstr_padr
+				output_colour
 
 
 allowed functions:
