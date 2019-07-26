@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_folder_long.c                                  :+:      :+:    :+:   */
+/*   set_attributes_long.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/25 12:23:56 by mcarter          ###   ########.fr       */
+/*   Created: 2019/07/26 11:19:57 by mcarter           #+#    #+#             */
+/*   Updated: 2019/07/26 11:21:00 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #ifdef __linux__
 
-void	set_attributes(t_elem *item)
+void	set_attributes_long(t_elem *item)
 {
 	struct stat	stat_s;
 
@@ -34,7 +34,7 @@ void	set_attributes(t_elem *item)
 
 #else
 
-void	set_attributes(t_elem *item)
+void	set_attributes_long(t_elem *item)
 {
 	struct stat	stat_s;
 
@@ -53,29 +53,3 @@ void	set_attributes(t_elem *item)
 }
 
 #endif
-
-t_elem	*get_folder_long(char *path, t_args args)
-{
-	DIR				*dirp;
-	struct dirent	*dir_ent;
-	MAXUNBR			dircount;
-	t_elem			*items;
-	int				i;
-
-	dirp = opendir(path);
-	dircount = get_folder_count(path, args.all);
-	items = (t_elem *)ft_memalloc((dircount + 1) * sizeof(t_elem));
-	i = 0;
-	while ((dir_ent = readdir(dirp)) != NULL)
-	{
-		if (args.all || dir_ent->d_name[0] != '.')
-		{
-			items[i].name = dir_ent->d_name;
-			set_attributes(&items[i]);
-			i++;
-		}
-	}
-	items[i].name = 0;
-	closedir(dirp);
-	return (items);
-}

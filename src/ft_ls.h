@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/25 12:15:56 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/26 11:49:26 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,22 @@ typedef struct	s_colinfo
 
 void			parse_args(t_args *args, char *arg_str);
 void			show_folder(char *path, t_args args);
+t_elem			*get_folder(char *path, t_args args);
+MAXUNBR			get_folder_count(char *path, char all);
+void			sort_elem_array(t_elem *arr, t_args args);
 
-t_elem			*get_folder_short(char *path, t_args args);
+void			set_attributes_short(t_elem *item);
 void			output_columns(t_elem *elems, t_args args);
 t_colinfo		get_column_info(t_elem *elems);
 size_t			get_elem_count(t_elem *elems);
 
-t_elem			*get_folder_long(char *path, t_args args);
-MAXUNBR			get_folder_count(char *path, char all);
+void			set_attributes_long(t_elem *item);
 char			get_type(mode_t mode);
 char			*get_perms(mode_t mode);
 char			*parse_user(uid_t uid);
 char			*parse_group(gid_t gid);
 char			*get_last_modified(time_t seconds);
 char			*get_slink_target(char *path, MAXUNBR tlen);
-void			sort_elem_array(t_elem *arr, t_args args);
 void			output_line(t_elem elem, t_args args);
 
 void			putnbr_padl(MAXUNBR n, MAXUNBR total_len);
