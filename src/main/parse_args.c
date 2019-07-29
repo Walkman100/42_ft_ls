@@ -31,7 +31,8 @@ void	parse_args(t_args *args, char *arg_str)
 		else if (*arg_str == 'f')
 		{
 			(*args).no_sort = 1;
-			(*args).all = 1;
+			if (!(*args).all)
+				(*args).all = 1;
 		}
 		else if (*arg_str == 'r')
 			(*args).reverse_sort = 1;

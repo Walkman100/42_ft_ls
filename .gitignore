@@ -54,3 +54,6 @@ dkms.conf
 # IDE files
 .vscode/
 *.swp
+
+# Binary
+ft_ls
