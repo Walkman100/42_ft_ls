@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:22 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/26 12:43:35 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/29 11:58:00 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	output_column_n(t_elem *elems, char clr, t_colinfo colinfo, size_t c_ln)
 			if (clr)
 				output_colour(curr_elem.type);
 			if (i + 1 == colinfo.cols)
-				ft_putendl(curr_elem.name);
+				ft_putstr(curr_elem.name);
 			else
 				putstr_padr(curr_elem.name, colinfo.maxwidth);
 			if (clr)
@@ -41,6 +41,7 @@ void	output_column_n(t_elem *elems, char clr, t_colinfo colinfo, size_t c_ln)
 		}
 		i++;
 	}
+	ft_putchar('\n');
 }
 
 void	output_columns(t_elem *elems, t_args args)
