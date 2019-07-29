@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:40:34 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/26 13:21:37 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/29 11:08:15 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_lineinfo	get_line_info(t_elem *elems)
 	lineinfo.groupw = 0;
 	lineinfo.fsizew = 0;
 	lineinfo.namew = 0;
-	while (elems)
+	while ((*elems).name)
 	{
 		lineinfo.elem_count++;
 		tmp = ft_unbrlen((*elems).inodes);

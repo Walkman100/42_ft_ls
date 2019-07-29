@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:40:34 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 16:16:26 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/29 11:12:42 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t		get_max_width(t_elem *elems)
 	size_t	tmp;
 
 	maxwidth = 0;
-	while (elems)
+	while ((*elems).name)
 	{
 		tmp = ft_strlen((*elems).name);
 		if (tmp > maxwidth)
