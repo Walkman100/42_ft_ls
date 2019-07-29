@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/29 12:34:27 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/29 15:32:52 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ t_elem			*get_folder(char *path, t_args args);
 MAXUNBR			get_folder_count(char *path, unsigned char all);
 int				filter(unsigned char all, char *name);
 void			sort_elem_array(t_elem *arr, t_args args);
+int				cmp_name(t_elem elem1, t_elem elem2);
+int				cmp_modified(t_elem elem1, t_elem elem2);
+int				cmp_access(t_elem elem1, t_elem elem2);
 
 void			set_attributes_short(char *path, t_elem *item);
 char			get_type(mode_t mode);

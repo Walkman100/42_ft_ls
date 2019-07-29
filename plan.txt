@@ -106,7 +106,12 @@ main:
 				parse_group
 				get_last_modified
 				get_slink_target
-		sort_elem_array //
+		sort_elem_array
+			sort_elems
+			sort_elems_reverse
+				cmp_name
+				cmp_access
+				cmp_modified
 		output_columns
 			get_column_info
 				get_max_width
