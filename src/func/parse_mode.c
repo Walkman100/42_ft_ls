@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:34 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/29 10:52:21 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/29 11:07:38 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ void	set_perms(mode_t mode, char *str)
 void	parse_mode(mode_t mode, char *type, char **perms)
 {
 	*type = get_type(mode);
-	*perms = ft_strdup("---------  ");
+	*perms = ft_strdup("--------- ");
 	set_perms(mode, *perms);
 }

@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/29 10:52:36 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/29 11:04:42 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct	s_lineinfo
 	MAXUNBR	userw;
 	MAXUNBR	groupw;
 	MAXUNBR	fsizew;
-	MAXUNBR	namew;
 }				t_lineinfo;
 
 void			parse_args(t_args *args, char *arg_str);

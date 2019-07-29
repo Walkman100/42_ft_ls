@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:30 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/26 13:03:54 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/29 11:11:04 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ void	output_line(t_elem elem, t_lineinfo lineinfo, t_args args)
 {
 	ft_printf("%c%s ", elem.type, elem.perms);
 	putnbr_padl(elem.inodes, lineinfo.inodew);
+	ft_putchar(' ');
 	putstr_padr(elem.user, lineinfo.userw);
 	putstr_padr(elem.group, lineinfo.groupw);
 	putnbr_padl(elem.fsize, lineinfo.fsizew);
-	ft_putchar(' ');
-	ft_putstr(elem.date);
+	ft_printf(" %s ", elem.date);
 	if (args.colour)
 		output_colour(elem.type);
-	putstr_padr(elem.name, lineinfo.namew);
+	ft_putstr(elem.name);
 	if (args.colour)
 		put_clr(RESET);
 	if (elem.type == 'l')
-		ft_putstr(elem.ln_target);
+		ft_printf(" -> %s", elem.ln_target);
 	ft_putchar('\n');
 }
 
