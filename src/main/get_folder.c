@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/26 11:25:12 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/29 11:38:55 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_elem	*get_folder(char *path, t_args args)
 	i = 0;
 	while ((dir_ent = readdir(dirp)) != NULL)
 	{
-		if (args.all || dir_ent->d_name[0] != '.')
+		if (filter(args.all, dir_ent->d_name))
 		{
 			items[i].name = dir_ent->d_name;
 			if (args.long_list)

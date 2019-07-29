@@ -92,6 +92,8 @@ main:
 	show_folder
 		get_folder
 			get_folder_count
+				filter
+			filter
 			set_attributes_short
 				get_type
 			set_attributes_long
