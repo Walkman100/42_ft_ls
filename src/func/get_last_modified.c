@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:51 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/24 17:18:54 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/29 12:03:07 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 ** Nov 24 18:22:48 1986\0
 ** strncpy copies just "Nov 24 ", rest of the string was already null
 ** 6 months * 183 days * 86400 seconds in a day
-** if older than 6 months, concat "1986\0"
-**  Nov 24 1986\0\0
+** if older than 6 months, concat " 1986\0"
+**  Nov 24  1986\0
 ** if more recent, concat "18:22\0"
 **  Nov 24 18:22\0
 */
@@ -37,7 +37,7 @@ char	*get_last_modified(time_t seconds)
 	rtn = ft_strnew(12);
 	ft_strncpy(rtn, tmp, 7);
 	if (age > (6 * 183 * 86400))
-		ft_strncat(rtn, tmp + 16, 4);
+		ft_strncat(rtn, tmp + 15, 5);
 	else
 		ft_strncat(rtn, tmp + 7, 5);
 	free(tmp);
