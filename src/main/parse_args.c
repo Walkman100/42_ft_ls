@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 16:33:01 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/25 12:21:18 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/30 17:06:48 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	parse_args(t_args *args, char *arg_str)
 		else if (*arg_str == 'A')
 			(*args).all = 2;
 		else if (*arg_str == 'g')
+		{
 			(*args).noowner = 1;
+			(*args).long_list = 1;
+		}
 		else if (*arg_str == 'd')
 			(*args).no_recurse = 1;
 		else if (*arg_str == 'R')
