@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/29 12:34:35 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/30 17:12:36 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_elem	*get_folder(char *path, t_args args)
 		{
 			items[i].name = dir_ent->d_name;
 			if (args.long_list)
-				set_attributes_long(path, &items[i]);
+				set_attributes_long(path, &items[i], args);
 			else
 				set_attributes_short(path, &items[i]);
 			i++;

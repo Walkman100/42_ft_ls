@@ -104,7 +104,7 @@ main:
 					get_acl (+) //
 				parse_user
 				parse_group
-				get_last_modified
+				get_time_str
 				get_slink_target
 		sort_elem_array
 			sort_elems

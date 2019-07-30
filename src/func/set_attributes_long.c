@@ -6,13 +6,13 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:19:57 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/29 13:03:59 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/30 17:14:06 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-void	set_attributes_long(char *path, t_elem *item)
+void	set_attributes_long(char *path, t_elem *item, t_args args)
 {
 	struct stat	stat_s;
 	char		*tmp;
@@ -26,7 +26,10 @@ void	set_attributes_long(char *path, t_elem *item)
 	(*item).user = parse_user(stat_s.st_uid);
 	(*item).group = parse_group(stat_s.st_gid);
 	(*item).fsize = stat_s.st_size;
-	(*item).date = get_last_modified(stat_s.st_mtime);
+	if (args.sort_access && !args.sort_time)
+		(*item).date = get_time_str(stat_s.st_atime);
+	else
+		(*item).date = get_time_str(stat_s.st_mtime);
 	if ((*item).type == 'l')
 		(*item).ln_target = get_slink_target(tmp, stat_s.st_size);
 	free(tmp);

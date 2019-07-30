@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/29 15:32:52 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/30 17:11:33 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,11 @@ void			output_columns(t_elem *elems, t_args args);
 t_colinfo		get_column_info(t_elem *elems);
 size_t			get_elem_count(t_elem *elems);
 
-void			set_attributes_long(char *path, t_elem *item);
+void			set_attributes_long(char *path, t_elem *item, t_args args);
 void			parse_mode(mode_t mode, char *type, char **perms);
 char			*parse_user(uid_t uid);
 char			*parse_group(gid_t gid);
-char			*get_last_modified(time_t seconds);
+char			*get_time_str(time_t seconds);
 char			*get_slink_target(char *path, MAXUNBR tlen);
 void			output_lines(t_elem *elems, t_args args);
 t_lineinfo		get_line_info(t_elem *elems);
