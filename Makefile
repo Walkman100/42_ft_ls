@@ -6,7 +6,7 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/07/29 15:35:36 by mcarter          ###   ########.fr        #
+#    Updated: 2019/07/30 15:56:42 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ LFTA = libft/libft.a
 all: $(NAME)
 
 $(NAME): $(LFTA) $(OFILES) $(HFILE)
-	gcc $(GCCFLAGS) $(LFT) $(OFILES) -o $(NAME)
+	gcc $(GCCFLAGS) $(OFILES) $(LFT) -o $(NAME)
 
 $(LFTA):
 	make -C libft
