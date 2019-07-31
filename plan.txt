@@ -109,17 +109,20 @@ main:
 		sort_elem_array
 			sort_elems
 			sort_elems_reverse
-				cmp_name
-				cmp_access
-				cmp_modified
+			cmp_name
+			cmp_access
+			cmp_modified
 		output_columns
 			get_column_info
 				get_max_width
 				get_elem_count
 			output_column_n
 				output_colour
+		get_folder_size
 		output_lines
 			get_line_info
+				init_line_info
+				loop_line_info
 			output_line
 				putnbr_padl
 				putstr_padr

@@ -6,28 +6,28 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/07/30 17:20:25 by mcarter          ###   ########.fr        #
+#    Updated: 2019/07/30 22:57:06 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GCCFLAGS = -Wall -Wextra -Werror
 NAME = ft_ls
 SRC = src/func/filter.c src/func/get_column_info.c src/func/get_elem_count.c \
-		src/func/get_folder_count.c src/func/get_time_str.c \
+		src/func/get_folder_count.c src/func/get_folder_size.c \
 		src/func/get_line_info.c src/func/get_slink_target.c \
-		src/func/parse_group.c src/func/parse_mode.c src/func/parse_user.c \
-		src/func/set_attributes_long.c src/func/set_attributes_short.c \
-		src/func/sort_cmp.c src/main/get_folder.c src/main/main.c \
-		src/main/parse_args.c src/main/show_folder.c src/main/sort.c \
-		src/output/output_colour.c src/output/output_columns.c \
-		src/output/output_lines.c src/output/pad.c
+		src/func/get_time_str.c src/func/parse_group.c src/func/parse_mode.c \
+		src/func/parse_user.c src/func/set_attributes_long.c \
+		src/func/set_attributes_short.c src/func/sort_cmp.c \
+		src/main/get_folder.c src/main/main.c src/main/parse_args.c \
+		src/main/show_folder.c src/main/sort.c src/output/output_colour.c \
+		src/output/output_columns.c src/output/output_lines.c src/output/pad.c
 OFILES = bin/filter.o bin/get_column_info.o bin/get_elem_count.o \
-		bin/get_folder_count.o bin/get_time_str.o bin/get_line_info.o \
-		bin/get_slink_target.o bin/parse_group.o bin/parse_mode.o \
-		bin/parse_user.o bin/set_attributes_long.o bin/set_attributes_short.o \
-		bin/sort_cmp.o bin/get_folder.o bin/main.o bin/parse_args.o \
-		bin/show_folder.o bin/sort.o bin/output_colour.o bin/output_columns.o \
-		bin/output_lines.o bin/pad.o
+		bin/get_folder_count.o bin/get_folder_size.o bin/get_line_info.o \
+		bin/get_slink_target.o bin/get_time_str.o bin/parse_group.o \
+		bin/parse_mode.o bin/parse_user.o bin/set_attributes_long.o \
+		bin/set_attributes_short.o bin/sort_cmp.o bin/get_folder.o bin/main.o \
+		bin/parse_args.o bin/show_folder.o bin/sort.o bin/output_colour.o \
+		bin/output_columns.o bin/output_lines.o bin/pad.o
 HFILE = src/ft_ls.h
 LFT = -L libft -lft
 LFTA = libft/libft.a
@@ -70,6 +70,10 @@ bin/get_elem_count.o: $(HFILE) src/func/get_elem_count.c
 bin/get_folder_count.o: $(HFILE) src/func/get_folder_count.c
 	@mkdir -p bin
 	gcc $(GCCFLAGS) -c src/func/get_folder_count.c -o bin/get_folder_count.o
+
+bin/get_folder_size.o: $(HFILE) src/func/get_folder_size.c
+	@mkdir -p bin
+	gcc $(GCCFLAGS) -c src/func/get_folder_size.c -o bin/get_folder_size.o
 
 bin/get_line_info.o: $(HFILE) src/func/get_line_info.c
 	@mkdir -p bin

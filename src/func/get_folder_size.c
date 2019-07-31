@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_folder.c                                      :+:      :+:    :+:   */
+/*   get_folder_size.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/18 14:05:18 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/30 18:13:43 by mcarter          ###   ########.fr       */
+/*   Created: 2019/07/30 18:23:01 by mcarter           #+#    #+#             */
+/*   Updated: 2019/07/30 22:04:56 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-void	show_folder(char *path, t_args args)
-{
-	t_elem	*items;
+/*
+** adding 511 means that the number floor divided by 512 will always result in
+** the total amount of 512 blocks the file takes up
+*/
 
-	items = get_folder(path, args);
-	sort_elem_array(items, args);
-	if (args.long_list == 0)
-		output_columns(items, args);
-	else
+MAXUNBR	get_folder_size(t_elem *elems)
+{
+	MAXUNBR	rtn;
+
+	rtn = 0;
+	while ((*elems).name)
 	{
-		ft_printf("total %u\n", get_folder_size(items));
-		output_lines(items, args);
+		rtn += ((*elems).fsize + 511) / 512;
+		elems++;
 	}
+	return (rtn);
 }
