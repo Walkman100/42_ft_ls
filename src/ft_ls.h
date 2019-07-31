@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/30 22:17:58 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/30 23:06:11 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,18 @@ typedef struct	s_args
 
 typedef struct	s_elem
 {
-	time_t	atime;
-	time_t	mtime;
-	char	type;
-	char	*perms;
-	nlink_t	inodes;
-	char	*user;
-	char	*group;
-	off_t	fsize;
-	char	*date;
-	char	*name;
-	char	*ln_target;
+	time_t		atime;
+	time_t		mtime;
+	blkcnt_t	blocks;
+	char		type;
+	char		*perms;
+	nlink_t		inodes;
+	char		*user;
+	char		*group;
+	off_t		fsize;
+	char		*date;
+	char		*name;
+	char		*ln_target;
 }				t_elem;
 
 typedef struct	s_colinfo

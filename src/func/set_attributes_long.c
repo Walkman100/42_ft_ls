@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:19:57 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/30 17:14:06 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/30 22:22:43 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	set_attributes_long(char *path, t_elem *item, t_args args)
 	lstat(tmp, &stat_s);
 	(*item).atime = stat_s.st_atime;
 	(*item).mtime = stat_s.st_mtime;
+	(*item).blocks = stat_s.st_blocks;
 	parse_mode(stat_s.st_mode, &(*item).type, &(*item).perms);
 	(*item).inodes = stat_s.st_nlink;
 	(*item).user = parse_user(stat_s.st_uid);

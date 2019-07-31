@@ -31,6 +31,7 @@ use array with structures as elements, so can be sorted easily
 	element structure:
 elem->atime
 elem->mtime (for sorting)
+elem->blocks (for long list)
 elem->type -(file),d,l,s,p,b,c
 elem->perms
 elem->inodes
