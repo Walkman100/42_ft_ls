@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/30 17:12:36 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/31 14:04:35 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_elem	*get_folder(char *path, t_args args)
 	items = (t_elem *)ft_memalloc((dircount + 1) * sizeof(t_elem));
 	i = 0;
 	while ((dir_ent = readdir(dirp)) != NULL)
-	{
 		if (filter(args.all, dir_ent->d_name))
 		{
 			items[i].name = dir_ent->d_name;
@@ -35,7 +34,6 @@ t_elem	*get_folder(char *path, t_args args)
 				set_attributes_short(path, &items[i]);
 			i++;
 		}
-	}
 	items[i].name = 0;
 	closedir(dirp);
 	return (items);

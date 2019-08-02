@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_folder.c                                      :+:      :+:    :+:   */
+/*   recursion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/18 14:05:18 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/02 11:54:06 by mcarter          ###   ########.fr       */
+/*   Created: 2019/07/30 22:59:56 by mcarter           #+#    #+#             */
+/*   Updated: 2019/08/02 11:53:59 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-void	show_folder(char *path, t_args args)
+void	show_folder_subfolders(char *path, t_args args, t_elem *items)
 {
-	t_elem	*items;
+	char			*tmp;
 
-	items = get_folder(path, args);
-	sort_elem_array(items, args);
-	if (args.long_list == 0)
-		output_columns(items, args);
-	else
+	while ((*items).name)
 	{
-		ft_printf("total %u\n", get_folder_size(items));
-		output_lines(items, args);
+		if (filter(2, (*items).name) && (*items).type == 'd')
+		{
+			tmp = ft_strjoin3(path, "/", (*items).name);
+			ft_printf("\n%s:\n", tmp);
+			show_folder(tmp, args);
+			ft_memdel((void **)&tmp);
+		}
+		items++;
 	}
-	if (args.recursive)
-		show_folder_subfolders(path, args, items);
 }

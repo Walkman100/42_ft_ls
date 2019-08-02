@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 19:38:14 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/25 11:25:54 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/31 13:01:05 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int		main(int argc, char **argv)
 	{
 		if (argv[i][0] == '-')
 			parse_args(&args, argv[i] + 1);
-		else if (args.recursive)
-			ft_putstr("Not implemented\n");
 		else
 		{
 			got_path = 1;
@@ -49,11 +47,6 @@ int		main(int argc, char **argv)
 		i++;
 	}
 	if (!got_path)
-	{
-		if (args.recursive)
-			ft_putstr("Not implemented\n");
-		else
-			show_folder(".", args);
-	}
+		show_folder(".", args);
 	return (0);
 }

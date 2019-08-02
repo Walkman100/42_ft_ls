@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/30 23:06:11 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/02 11:54:19 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void			sort_elem_array(t_elem *arr, t_args args);
 int				cmp_name(t_elem elem1, t_elem elem2);
 int				cmp_modified(t_elem elem1, t_elem elem2);
 int				cmp_access(t_elem elem1, t_elem elem2);
+void			show_folder_subfolders(char *path, t_args args, t_elem *items);
 
 void			set_attributes_short(char *path, t_elem *item);
 char			get_type(mode_t mode);

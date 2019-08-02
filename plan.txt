@@ -89,7 +89,6 @@ current structure:
 main:
 	init_args
 	parse_args
-	recursion //
 	show_folder
 		get_folder
 			get_folder_count
@@ -128,6 +127,7 @@ main:
 				putnbr_padl
 				putstr_padr
 				output_colour
+		show_folder_subfolders
 
 
 allowed functions:
