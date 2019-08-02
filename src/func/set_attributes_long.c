@@ -23,6 +23,7 @@ void	set_attributes_long(char *path, t_elem *item, t_args args)
 	(*item).mtime = stat_s.st_mtime;
 	(*item).blocks = stat_s.st_blocks;
 	parse_mode(stat_s.st_mode, &(*item).type, &(*item).perms);
+	(*item).perms[9] = get_extra_char(tmp);
 	(*item).inodes = stat_s.st_nlink;
 	(*item).user = parse_user(stat_s.st_uid);
 	(*item).group = parse_group(stat_s.st_gid);

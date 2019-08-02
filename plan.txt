@@ -100,8 +100,7 @@ main:
 				parse_mode
 					get_type
 					set_perms
-					get_xattr (@) //
-					get_acl (+) //
+				get_extra_char (@, +)
 				parse_user
 				parse_group
 				get_time_str
