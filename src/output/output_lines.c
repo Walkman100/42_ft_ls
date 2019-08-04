@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:30 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/30 17:07:50 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/04 16:24:04 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	output_line(t_elem elem, t_lineinfo lineinfo, t_args args)
 {
-	ft_printf("%c%s ", elem.type, elem.perms);
+	ft_printf("%c%s", elem.type, elem.perms);
 	putnbr_padl(elem.inodes, lineinfo.inodew);
 	ft_putchar(' ');
 	if (!args.noowner)
