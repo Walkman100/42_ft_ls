@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 16:33:01 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/30 17:06:48 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/07/31 18:12:27 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void	parse_args(t_args *args, char *arg_str)
 		else if (*arg_str == 'f')
 		{
 			(*args).no_sort = 1;
-			if (!(*args).all)
-				(*args).all = 1;
+			(*args).all = 1;
 		}
 		else if (*arg_str == 'r')
 			(*args).reverse_sort = 1;
