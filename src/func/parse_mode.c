@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:34 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/29 11:07:38 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/05 13:15:39 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,64 +14,49 @@
 
 char	get_type(mode_t mode)
 {
-	if ((mode & 0140000) == 0140000)
+	if ((mode & S_IFSOCK) == S_IFSOCK)
 		return ('s');
-	if ((mode & 0120000) == 0120000)
+	if ((mode & S_IFLNK) == S_IFLNK)
 		return ('l');
-	if ((mode & 0100000) == 0100000)
+	if ((mode & S_IFREG) == S_IFREG)
 		return ('-');
-	if ((mode & 0060000) == 0060000)
+	if ((mode & S_IFBLK) == S_IFBLK)
 		return ('b');
-	if ((mode & 0040000) == 0040000)
+	if ((mode & S_IFDIR) == S_IFDIR)
 		return ('d');
-	if ((mode & 0020000) == 0020000)
+	if ((mode & S_IFCHR) == S_IFCHR)
 		return ('c');
-	if ((mode & 0010000) == 0010000)
+	if ((mode & S_IFIFO) == S_IFIFO)
 		return ('p');
 	return ('?');
 }
 
 void	set_perms(mode_t mode, char *str)
 {
-	if ((mode & 0004000) == 0004000)
+	if ((mode & S_ISUID) == S_ISUID)
 		str[2] = 'S';
-	if ((mode & 0002000) == 0002000)
+	if ((mode & S_ISGID) == S_ISGID)
 		str[5] = 'S';
-	if ((mode & 0001000) == 0001000)
+	if ((mode & S_ISVTX) == S_ISVTX)
 		str[8] = 'T';
-	if ((mode & 0000400) == 0000400)
+	if ((mode & S_IRUSR) == S_IRUSR)
 		str[0] = 'r';
-	if ((mode & 0000200) == 0000200)
+	if ((mode & S_IWUSR) == S_IWUSR)
 		str[1] = 'w';
-	if ((mode & 0000100) == 0000100)
-	{
-		if (str[2] == 'S')
-			str[2] = 's';
-		else
-			str[2] = 'x';
-	}
-	if ((mode & 0000040) == 0000040)
+	if ((mode & S_IXUSR) == S_IXUSR)
+		str[2] = (str[2] == 'S') ? 's' : 'x';
+	if ((mode & S_IRGRP) == S_IRGRP)
 		str[3] = 'r';
-	if ((mode & 0000020) == 0000020)
+	if ((mode & S_IWGRP) == S_IWGRP)
 		str[4] = 'w';
-	if ((mode & 0000010) == 0000010)
-	{
-		if (str[5] == 'S')
-			str[5] = 's';
-		else
-			str[5] = 'x';
-	}
-	if ((mode & 0000004) == 0000004)
+	if ((mode & S_IXGRP) == S_IXGRP)
+		str[5] = (str[5] == 'S') ? 's' : 'x';
+	if ((mode & S_IROTH) == S_IROTH)
 		str[6] = 'r';
-	if ((mode & 0000002) == 0000002)
+	if ((mode & S_IWOTH) == S_IWOTH)
 		str[7] = 'w';
-	if ((mode & 0000001) == 0000001)
-	{
-		if (str[8] == 'T')
-			str[8] = 't';
-		else
-			str[8] = 'x';
-	}
+	if ((mode & S_IXOTH) == S_IXOTH)
+		str[8] = (str[8] == 'T') ? 't' : 'x';
 }
 
 void	parse_mode(mode_t mode, char *type, char **perms)
