@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:22 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/05 09:21:46 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/05 13:55:52 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,37 @@ void	output_column_n(t_elem *elems, char clr, t_colinfo colinfo, size_t c_ln)
 	ft_putchar('\n');
 }
 
+void	output_one_column(t_elem *elems, t_args args)
+{
+	while ((*elems).name)
+	{
+		if (args.colour)
+			output_colour((*elems).type, (*elems).perms);
+		ft_putstr((*elems).name);
+		if (args.colour)
+			put_clr(RESET);
+		ft_putchar('\n');
+		elems++;
+	}
+}
+
 void	output_columns(t_elem *elems, t_args args)
 {
 	t_colinfo	colinfo;
 	size_t		i;
 
-	colinfo = get_column_info(elems);
-	i = 0;
-	while (i < colinfo.lines)
+	if (args.columns == 2)
+		args.columns = (isatty(STDOUT_FILENO)) ? 1 : 0;
+	if (args.columns)
 	{
-		output_column_n(elems, args.colour, colinfo, i);
-		i++;
+		colinfo = get_column_info(elems);
+		i = 0;
+		while (i < colinfo.lines)
+		{
+			output_column_n(elems, args.colour, colinfo, i);
+			i++;
+		}
 	}
+	else
+		output_one_column(elems, args);
 }

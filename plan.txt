@@ -13,6 +13,9 @@ bonus:
 -f: Output is not sorted.  This option turns on the -a option.
 -u: Use time of last access, instead of last modification of the file for sorting (-t) or long printing (-l).
 
+-1: Force output to be one entry per line.  This is the default when output is not to a terminal.
+-C: Force multi-column output; this is the default when output is to a terminal.
+
 	args_struct:
 (all char bool)
 long
@@ -25,6 +28,7 @@ noowner
 no_recurse (list dirs as plain files)
 no_sort
 sort_access
+columns (0=off, 1=on, 2=auto)
 
 use array with structures as elements, so can be sorted easily
 
@@ -118,6 +122,8 @@ main:
 			output_column_n
 				output_colour
 				putstr_padr_c
+			output_one_column
+				output_colour
 		get_folder_size
 		output_lines
 			get_line_info

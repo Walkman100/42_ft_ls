@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 19:38:14 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/31 13:01:05 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/05 13:57:28 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_args(t_args *args)
 	(*args).sort_time = 0;
 	(*args).sort_access = 0;
 	(*args).colour = 0;
+	(*args).columns = 2;
 }
 
 int		main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/05 10:21:28 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/05 13:44:37 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@
 ** 0 = false
 ** 1 = true
 ** 2 = no . and ..
+**
+** columns:
+** 0 = off
+** 1 = on
+** 2 = auto
 */
 
 typedef struct	s_args
@@ -56,6 +61,7 @@ typedef struct	s_args
 	char			sort_time : 1;
 	char			sort_access : 1;
 	char			colour : 1;
+	unsigned		columns : 2;
 }				t_args;
 
 typedef struct	s_elem

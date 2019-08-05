@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 16:33:01 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/31 18:12:27 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/05 13:58:48 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ void	parse_args(t_args *args, char *arg_str)
 			(*args).sort_access = 1;
 		else if (*arg_str == 'G')
 			(*args).colour = 1;
+		else if (*arg_str == '1')
+			(*args).columns = 0;
+		else if (*arg_str == 'C')
+			(*args).columns = 1;
 		else
 			ft_printf("ft_ls: invalid option '%c'\n", *arg_str);
 		arg_str++;
