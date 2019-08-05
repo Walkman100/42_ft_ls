@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 11:21:33 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/02 11:22:35 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/05 16:48:56 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_slink_target(char *path, MAXUNBR targetlen)
 	}
 	else
 	{
-		perror("ft_ls (get_slink_target)");
+		put_error(errno, "readlink ", __func__);
 		free(rtn);
 		return (ft_strjoin("Error: ", strerror(errno)));
 	}

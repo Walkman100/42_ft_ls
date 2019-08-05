@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:40 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/22 12:27:25 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/05 16:49:06 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ char	*parse_user(uid_t uid)
 
 	errno = 0;
 	pw_s = getpwuid(uid);
-	if (errno == 0)
+	if (pw_s)
 		return (ft_strdup(pw_s->pw_name));
-	else
-	{
-		perror("ft_ls (parse_user)");
-		return (ft_strjoin("Error: ", strerror(errno)));
-	}
+	else if (errno)
+		put_error(errno, "getpwuid ", __func__);
+	return (ft_itoa(uid));
 }
