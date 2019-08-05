@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/05 09:25:00 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/05 10:21:28 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ t_lineinfo		get_line_info(t_elem *elems);
 
 void			putnbr_padl(MAXUNBR n, MAXUNBR total_len);
 void			putstr_padr(char *s, MAXUNBR total_len);
+void			putstr_padr_c(char *s, char *clr, MAXUNBR total_len);
 void			output_colour(char type, char *perms);
 #endif

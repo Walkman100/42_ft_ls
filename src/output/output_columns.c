@@ -33,11 +33,11 @@ void	output_column_n(t_elem *elems, char clr, t_colinfo colinfo, size_t c_ln)
 			if (clr)
 				output_colour(curr_elem.type, curr_elem.perms);
 			if (i + 1 == colinfo.cols)
-				ft_putstr(curr_elem.name);
+				putstr_padr_c(curr_elem.name, clr ? RESET : "", \
+													ft_strlen(curr_elem.name));
 			else
-				putstr_padr(curr_elem.name, colinfo.maxwidth);
-			if (clr)
-				put_clr(RESET);
+				putstr_padr_c(curr_elem.name, clr ? RESET : "", \
+													colinfo.maxwidth);
 		}
 		i++;
 	}
