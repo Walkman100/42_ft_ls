@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/02 13:56:59 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/05 09:25:00 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int				cmp_access(t_elem elem1, t_elem elem2);
 void			show_folder_subfolders(char *path, t_args args, t_elem *items);
 
 void			set_attributes_short(char *path, t_elem *item);
-char			get_type(mode_t mode);
 void			output_columns(t_elem *elems, t_args args);
 t_colinfo		get_column_info(t_elem *elems);
 size_t			get_elem_count(t_elem *elems);
@@ -121,5 +120,5 @@ t_lineinfo		get_line_info(t_elem *elems);
 
 void			putnbr_padl(MAXUNBR n, MAXUNBR total_len);
 void			putstr_padr(char *s, MAXUNBR total_len);
-void			output_colour(char type);
+void			output_colour(char type, char *perms);
 #endif

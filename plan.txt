@@ -95,7 +95,7 @@ main:
 				filter
 			filter
 			set_attributes_short
-				get_type
+				parse_mode (see below)
 			set_attributes_long
 				parse_mode
 					get_type

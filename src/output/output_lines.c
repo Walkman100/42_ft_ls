@@ -23,7 +23,7 @@ void	output_line(t_elem elem, t_lineinfo lineinfo, t_args args)
 	putnbr_padl(elem.fsize, lineinfo.fsizew);
 	ft_printf(" %s ", elem.date);
 	if (args.colour)
-		output_colour(elem.type);
+		output_colour(elem.type, elem.perms);
 	ft_putstr(elem.name);
 	if (args.colour)
 		put_clr(RESET);

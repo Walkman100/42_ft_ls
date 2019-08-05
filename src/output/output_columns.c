@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:22 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/29 11:58:00 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/05 09:21:46 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	output_column_n(t_elem *elems, char clr, t_colinfo colinfo, size_t c_ln)
 		{
 			curr_elem = elems[curr_elem_index];
 			if (clr)
-				output_colour(curr_elem.type);
+				output_colour(curr_elem.type, curr_elem.perms);
 			if (i + 1 == colinfo.cols)
 				ft_putstr(curr_elem.name);
 			else
