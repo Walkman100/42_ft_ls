@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:18 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/02 11:54:06 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/05 12:47:25 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	show_folder(char *path, t_args args)
 		output_columns(items, args);
 	else
 	{
-		ft_printf("total %u\n", get_folder_size(items));
+		if (items[0].name)
+			ft_printf("total %u\n", get_folder_size(items));
 		output_lines(items, args);
 	}
 	if (args.recursive)
