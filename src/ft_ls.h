@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/06 09:58:17 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/06 12:28:45 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 ** 1 = on
 ** 2 = auto
 */
+
+typedef struct stat	t_stat;
 
 typedef struct	s_args
 {

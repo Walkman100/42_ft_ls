@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:20:13 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/05 16:49:10 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/06 11:41:19 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	set_attributes_short(char *path, t_elem *item)
 {
-	struct stat	stat_s;
-	char		*tmp;
+	t_stat	stat_s;
+	char	*tmp;
 
 	if (!(tmp = ft_strjoin3(path, "/", (*item).name)))
 		exit_e(ENOMEM, "ft_strjoin3 ", __func__);
