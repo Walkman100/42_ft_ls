@@ -134,6 +134,7 @@ main:
 				putstr_padr
 				output_colour
 		show_folder_subfolders
+		free_items
 
 
 allowed functions:

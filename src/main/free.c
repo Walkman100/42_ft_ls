@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_folder.c                                      :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/18 14:05:18 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/06 09:58:32 by mcarter          ###   ########.fr       */
+/*   Created: 2019/08/06 09:54:18 by mcarter           #+#    #+#             */
+/*   Updated: 2019/08/06 10:11:48 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-void	show_folder(char *path, t_args args)
+void	free_items(t_elem **items)
 {
-	t_elem	*items;
+	t_elem	*tmp;
 
-	if (!(items = get_folder(path, args)))
-		return ;
-	sort_elem_array(items, args);
-	if (args.long_list == 0)
-		output_columns(items, args);
-	else
+	tmp = *items;
+	while ((*tmp).name)
 	{
-		if (items[0].name)
-			ft_printf("total %u\n", get_folder_size(items));
-		output_lines(items, args);
+		ft_memdel((void **)&(*tmp).perms);
+		ft_memdel((void **)&(*tmp).user);
+		ft_memdel((void **)&(*tmp).group);
+		ft_memdel((void **)&(*tmp).date);
+		ft_memdel((void **)&(*tmp).name);
+		ft_memdel((void **)&(*tmp).ln_target);
+		tmp++;
 	}
-	if (args.recursive)
-		show_folder_subfolders(path, args, items);
-	free_items(&items);
+	ft_memdel((void **)items);
 }
