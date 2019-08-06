@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 10:25:43 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/05 16:48:47 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/06 08:48:56 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ MAXUNBR	get_folder_count(char *path, unsigned char all)
 	MAXUNBR			i;
 
 	if (!(dirp = opendir(path)))
-		exit_path(errno, path, "opendir ", __func__);
+		return (put_error_path(errno, path, "opendir ", __func__));
 	i = 0;
 	errno = 0;
 	while ((dir_ent = readdir(dirp)) != NULL)
 	{
 		if (errno)
-			exit_e(errno, "readdir ", __func__);
+			return (put_error_path(errno, path, "readdir ", __func__));
 		if (filter(all, dir_ent->d_name))
 			i++;
 	}
 	if (closedir(dirp) == -1)
-		exit_e(errno, "closedir ", __func__);
+		return (put_error_path(errno, path, "closedir ", __func__));
 	return (i);
 }

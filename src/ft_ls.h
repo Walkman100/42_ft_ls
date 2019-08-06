@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/05 15:13:13 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/06 08:47:02 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,10 @@ void			putnbr_padl(MAXUNBR n, MAXUNBR total_len);
 void			putstr_padr(char *s, MAXUNBR total_len);
 void			putstr_padr_c(char *s, char *clr, MAXUNBR total_len);
 void			output_colour(char type, char *perms);
-void			put_error(int errno_l, char *dbg, const char *caller_name);
+int				put_error(int errno_l, char *dbg, const char *caller_name);
 void			exit_e(int errno_l, char *dbg, const char *caller_name);
-void			exit_path(int eno_l, char *pth, char *dbg, const char *cllr_nm);
+int				put_error_path(int errno_l, char *path, char *dbg, \
+													const char *caller_name);
+void			exit_path(int errno_l, char *path, char *dbg, \
+													const char *caller_name);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:18 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/05 12:47:25 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/06 08:56:29 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	show_folder(char *path, t_args args)
 {
 	t_elem	*items;
 
-	items = get_folder(path, args);
+	if (!(items = get_folder(path, args)))
+		return ;
 	sort_elem_array(items, args);
 	if (args.long_list == 0)
 		output_columns(items, args);
