@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/06 12:28:45 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/06 16:00:59 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,9 @@ typedef struct	s_lineinfo
 }				t_lineinfo;
 
 void			parse_args(t_args *args, char *arg_str);
+void			add_file(char **files, char *path);
+void			show_files(char **files, t_args args);
+void			show_folders(char **folders, t_args args);
 void			show_folder(char *path, t_args args);
 t_elem			*get_folder(char *path, t_args args);
 MAXUNBR			get_folder_count(char *path, unsigned char all);

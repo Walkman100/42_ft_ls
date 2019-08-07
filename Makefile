@@ -6,7 +6,7 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/08/06 10:04:00 by mcarter          ###   ########.fr        #
+#    Updated: 2019/08/06 12:37:38 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ SRC = src/func/filter.c src/func/get_column_info.c src/func/get_elem_count.c \
 		src/func/set_attributes_long.c src/func/set_attributes_short.c \
 		src/func/sort_cmp.c src/main/errors.c src/main/free.c \
 		src/main/get_folder.c src/main/main.c src/main/parse_args.c \
-		src/main/recursion.c src/main/show_folder.c src/main/sort.c \
-		src/output/output_colour.c src/output/output_columns.c \
+		src/main/recursion.c src/main/show_file.c src/main/show_folder.c \
+		src/main/sort.c src/output/output_colour.c src/output/output_columns.c \
 		src/output/output_lines.c src/output/pad.c
 OFILES = bin/filter.o bin/get_column_info.o bin/get_elem_count.o \
 		bin/get_extra_char.o bin/get_folder_count.o bin/get_folder_size.o \
@@ -29,8 +29,8 @@ OFILES = bin/filter.o bin/get_column_info.o bin/get_elem_count.o \
 		bin/parse_group.o bin/parse_mode.o bin/parse_user.o \
 		bin/set_attributes_long.o bin/set_attributes_short.o bin/sort_cmp.o \
 		bin/errors.o bin/free.o bin/get_folder.o bin/main.o bin/parse_args.o \
-		bin/recursion.o bin/show_folder.o bin/sort.o bin/output_colour.o \
-		bin/output_columns.o bin/output_lines.o bin/pad.o
+		bin/recursion.o bin/show_file.o bin/show_folder.o bin/sort.o \
+		bin/output_colour.o bin/output_columns.o bin/output_lines.o bin/pad.o
 HFILE = src/ft_ls.h
 LFT = -L libft -lft
 LFTA = libft/libft.a
@@ -142,6 +142,10 @@ bin/parse_args.o: $(HFILE) src/main/parse_args.c
 bin/recursion.o: $(HFILE) src/main/recursion.c
 	@mkdir -p bin
 	gcc $(GCCFLAGS) -c src/main/recursion.c -o bin/recursion.o
+
+bin/show_file.o: $(HFILE) src/main/show_file.c
+	@mkdir -p bin
+	gcc $(GCCFLAGS) -c src/main/show_file.c -o bin/show_file.o
 
 bin/show_folder.o: $(HFILE) src/main/show_folder.c
 	@mkdir -p bin

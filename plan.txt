@@ -93,6 +93,15 @@ current structure:
 main:
 	init_args
 	parse_args
+	add_file
+	show_files
+		set_attributes_short
+		set_attributes_long
+		sort_elem_array
+		output_columns
+		output_lines
+		free_items
+	show_folders ↩
 	show_folder
 		get_folder
 			get_folder_count
@@ -133,7 +142,7 @@ main:
 				putnbr_padl
 				putstr_padr
 				output_colour
-		show_folder_subfolders
+		show_folder_subfolders ↩
 		free_items
 
 
