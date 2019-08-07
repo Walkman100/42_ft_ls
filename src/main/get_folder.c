@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/06 08:58:48 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/07 15:56:41 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ t_elem	*get_folder(char *path, t_args args)
 		put_error_path(errno, path, "opendir ", __func__);
 		return (NULL);
 	}
-	if (!(items = (t_elem *)ft_memalloc((dircount + 1) * sizeof(t_elem))))
+	if (!(items = (t_elem *)ft_memalloc(sizeof(t_elem) * (dircount + 1))))
+	{
+		put_error(ENOMEM, "ft_memalloc ", __func__);
 		return (NULL);
+	}
 	i = 0;
 	errno = 0;
 	while ((dir_ent = readdir(dirp)) != NULL)

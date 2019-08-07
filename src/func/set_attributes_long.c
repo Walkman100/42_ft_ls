@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:19:57 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/06 11:40:55 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/07 16:03:41 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	set_attributes_long(char *path, t_elem *item, t_args args)
 	if (!(tmp = ft_strjoin3(path, "/", (*item).name)))
 		exit_e(ENOMEM, "ft_strjoin3 ", __func__);
 	if (lstat(tmp, &stat_s) == -1)
-		exit_path(errno, path, "lstat ", __func__);
+		exit_path(errno, tmp, "lstat ", __func__);
 	(*item).atime = stat_s.st_atime;
 	(*item).mtime = stat_s.st_mtime;
 	(*item).blocks = stat_s.st_blocks;
