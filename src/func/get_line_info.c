@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:40:34 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/04 16:25:45 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/11 17:13:07 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void		loop_line_info(t_lineinfo *lineinfo, t_elem *elems)
 		tmp = ft_strlen((*elems).group);
 		if (tmp > (*lineinfo).groupw)
 			(*lineinfo).groupw = tmp;
-		tmp = ft_nbrlen((*elems).fsize);
+		if ((*elems).type == 'b' || (*elems).type == 'c')
+			tmp = 8;
+		else
+			tmp = ft_nbrlen((*elems).fsize);
 		if (tmp > (*lineinfo).fsizew)
 			(*lineinfo).fsizew = tmp;
 		elems++;

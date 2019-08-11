@@ -29,7 +29,10 @@ void	set_attributes_long(char *path, t_elem *item, t_args args)
 	(*item).inodes = stat_s.st_nlink;
 	(*item).user = parse_user(stat_s.st_uid);
 	(*item).group = parse_group(stat_s.st_gid);
-	(*item).fsize = stat_s.st_size;
+	if ((*item).type == 'b' || (*item).type == 'c')
+		(*item).fsize = stat_s.st_rdev;
+	else
+		(*item).fsize = stat_s.st_size;
 	if (args.sort_access && !args.sort_time)
 		(*item).date = get_time_str(stat_s.st_atime);
 	else
