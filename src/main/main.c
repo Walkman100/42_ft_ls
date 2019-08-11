@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 19:38:14 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/06 15:46:24 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/11 13:24:15 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int		main(int argc, char **argv)
 	}
 	if (*files)
 		show_files(files, args);
+	if (*files && *folders)
+		ft_putchar('\n');
 	if (*folders)
 		show_folders(folders, args);
 	if (!got_path)

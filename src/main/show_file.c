@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 12:24:42 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/07 15:57:38 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/11 13:21:52 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,17 @@ void	show_files(char **files, t_args args)
 
 void	show_folders(char **folders, t_args args)
 {
+	char	*first;
+	int		morethanone;
+
+	first = *folders;
+	morethanone = (folders[1] ? 1 : 0);
 	while (*folders)
 	{
-		ft_printf("\n%s:\n", *folders);
+		if (first != *folders)
+			ft_putchar('\n');
+		if (morethanone)
+			ft_printf("%s:\n", *folders);
 		show_folder(*folders, args);
 		folders++;
 	}
