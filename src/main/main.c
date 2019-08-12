@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 19:38:14 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 14:36:21 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/12 17:08:40 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,24 @@ int		main(int argc, char **argv)
 	got_path = 0;
 	files = ft_memalloc(sizeof(*files) * argc);
 	folders = ft_memalloc(sizeof(*folders) * argc);
+	while (i < argc && argv[i][0] == '-')
+	{
+		if (ft_strcmp(argv[i], "--") == 0)
+		{
+			i++;
+			break ;
+		}
+		parse_args(&args, argv[i] + 1);
+		i++;
+	}
 	while (i < argc)
 	{
-		if (argv[i][0] == '-')
-			parse_args(&args, argv[i] + 1);
+		got_path = 1;
+		stat(argv[i], &stat_s);
+		if ((stat_s.st_mode & S_IFDIR) == S_IFDIR && !args.no_recurse)
+			add_file(folders, argv[i]);
 		else
-		{
-			got_path = 1;
-			stat(argv[i], &stat_s);
-			if ((stat_s.st_mode & S_IFDIR) == S_IFDIR && !args.no_recurse)
-				add_file(folders, argv[i]);
-			else
-				add_file(files, argv[i]);
-		}
+			add_file(files, argv[i]);
 		i++;
 	}
 	if (*files)

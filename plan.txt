@@ -124,7 +124,7 @@ main:
 				get_slink_target
 		sort_elem_array
 			sort_elems
-			sort_elems_reverse
+			reverse_array
 			cmp_name
 			cmp_access
 			cmp_modified
