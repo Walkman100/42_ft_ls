@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:30 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/09 01:45:38 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/12 10:24:35 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	output_line(t_elem elem, t_lineinfo lineinfo, t_args args)
 	putstr_padr(elem.group, lineinfo.groupw);
 	if (elem.type == 'b' || elem.type == 'c')
 	{
-		putnbr_padl(major(elem.fsize), 3);
-		ft_putstr(", ");
-		putnbr_padl(minor(elem.fsize), 3);
+		putnbr_padl(major(elem.fsize), lineinfo.fsizew - 5);
+		ft_putchar(',');
+		putnbr_padl(minor(elem.fsize), 4);
 	}
 	else
 		putnbr_padl(elem.fsize, lineinfo.fsizew);
