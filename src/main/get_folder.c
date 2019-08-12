@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/07 15:56:41 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/12 14:53:59 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_elem	*get_folder(char *path, t_args args)
 				set_attributes_short(path, &items[i]);
 			i++;
 		}
+		errno = 0;
 	}
 	items[i].name = 0;
 	if (closedir(dirp) == -1)
