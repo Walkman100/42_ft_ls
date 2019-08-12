@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 19:38:14 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/11 13:24:15 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/12 14:36:21 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	init_args(t_args *args)
 {
+	(*args).columns = 2;
 	(*args).long_list = 0;
 	(*args).all = 0;
-	(*args).noowner = 0;
 	(*args).no_recurse = 0;
 	(*args).recursive = 0;
 	(*args).no_sort = 0;
@@ -24,7 +24,9 @@ void	init_args(t_args *args)
 	(*args).sort_time = 0;
 	(*args).sort_access = 0;
 	(*args).colour = 0;
-	(*args).columns = 2;
+	(*args).show_owner = 1;
+	(*args).show_group = 1;
+	(*args).num_ids = 0;
 }
 
 int		main(int argc, char **argv)

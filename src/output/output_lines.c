@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:30 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 10:24:35 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/12 14:38:32 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ void	output_line(t_elem elem, t_lineinfo lineinfo, t_args args)
 	ft_printf("%c%s", elem.type, elem.perms);
 	putnbr_padl(elem.inodes, lineinfo.inodew);
 	ft_putchar(' ');
-	if (!args.noowner)
+	if (args.show_owner)
 		putstr_padr(elem.user, lineinfo.userw);
-	putstr_padr(elem.group, lineinfo.groupw);
+	if (args.show_group)
+		putstr_padr(elem.group, lineinfo.groupw);
 	if (elem.type == 'b' || elem.type == 'c')
 	{
 		putnbr_padl(major(elem.fsize), lineinfo.fsizew - 5);

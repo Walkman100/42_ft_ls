@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 16:33:01 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 13:49:52 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/12 14:45:08 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,21 @@ void	parse_args(t_args *args, char *arg_str)
 		}
 		else if (*arg_str == 'g')
 		{
-			(*args).noowner = 1;
+			(*args).show_owner = 0;
 			(*args).long_list = 1;
 		}
 		else if (*arg_str == 'l')
 			(*args).long_list = 1;
+		else if (*arg_str == 'n')
+		{
+			(*args).num_ids = 1;
+			(*args).long_list = 1;
+		}
+		else if (*arg_str == 'o')
+		{
+			(*args).show_group = 0;
+			(*args).long_list = 1;
+		}
 		else if (*arg_str == 'r')
 			(*args).reverse_sort = 1;
 		else if (*arg_str == 't')
@@ -52,7 +62,7 @@ void	parse_args(t_args *args, char *arg_str)
 		{
 			ft_putstr_fd("ft_ls: illegal option -- ", STDERR_FILENO);
 			ft_putchar_fd(*arg_str, STDERR_FILENO);
-			ft_putstr_fd("\nusage: ls [-ACGRadfglrtu1] [file ...]\n",
+			ft_putstr_fd("\nusage: ls [-ACGRadfglnortu1] [file ...]\n",
 				STDERR_FILENO);
 			exit(EXIT_FAILURE);
 		}

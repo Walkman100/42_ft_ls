@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 13:15:46 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/12 14:41:22 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ typedef struct stat	t_stat;
 
 typedef struct	s_args
 {
+	unsigned char	columns : 2;
 	char			long_list : 1;
 	unsigned char	all : 2;
-	char			noowner : 1;
 	char			no_recurse : 1;
 	char			recursive : 1;
 	char			no_sort : 1;
@@ -65,7 +65,9 @@ typedef struct	s_args
 	char			sort_time : 1;
 	char			sort_access : 1;
 	char			colour : 1;
-	unsigned		columns : 2;
+	char			show_owner : 1;
+	char			show_group : 1;
+	char			num_ids : 1;
 }				t_args;
 
 typedef struct	s_elem
@@ -124,8 +126,8 @@ size_t			get_elem_count(t_elem *elems);
 int				set_attributes_long(char *path, t_elem *item, t_args args);
 void			parse_mode(mode_t mode, char *type, char **perms);
 char			get_extra_char(char *path);
-char			*parse_user(uid_t uid);
-char			*parse_group(gid_t gid);
+char			*parse_user(uid_t uid, char noparse);
+char			*parse_group(gid_t gid, char noparse);
 char			*get_time_str(time_t seconds);
 char			*get_slink_target(char *path, MAXUNBR tlen);
 MAXUNBR			get_folder_size(t_elem *elems);

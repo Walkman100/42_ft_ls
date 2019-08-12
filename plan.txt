@@ -15,20 +15,24 @@ bonus:
 
 -1: Force output to be one entry per line.  This is the default when output is not to a terminal.
 -C: Force multi-column output; this is the default when output is to a terminal.
+-n: Display user and group IDs numerically, rather than converting to a user or group name in a long (-l) output.  This option turns on the -l option.
+-o: List in long format, but omit the group id.
 
 	args_struct:
 (all char bool)
+columns (0=off, 1=on, 2=auto)
 long
 recursive
 all (0=false, 1=true, 2=no . and ..)
-reverse_sort
-sort_time
-colour
-noowner
 no_recurse (list dirs as plain files)
 no_sort
+reverse_sort
+sort_time
 sort_access
-columns (0=off, 1=on, 2=auto)
+colour
+show_owner
+show_group
+num_ids (numerical ids,  used for -n)
 
 use array with structures as elements, so can be sorted easily
 

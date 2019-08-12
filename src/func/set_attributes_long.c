@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:19:57 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 10:34:57 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/12 14:52:22 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int		set_attributes_long(char *path, t_elem *item, t_args args)
 	parse_mode(stat_s.st_mode, &(*item).type, &(*item).perms);
 	(*item).perms[9] = get_extra_char(tmp);
 	(*item).inodes = stat_s.st_nlink;
-	(*item).user = parse_user(stat_s.st_uid);
-	(*item).group = parse_group(stat_s.st_gid);
+	(*item).user = parse_user(stat_s.st_uid, args.num_ids);
+	(*item).group = parse_group(stat_s.st_gid, args.num_ids);
 	if ((*item).type == 'b' || (*item).type == 'c')
 		(*item).fsize = stat_s.st_rdev;
 	else
