@@ -6,13 +6,13 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:19:57 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/07 16:03:41 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/12 10:34:57 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-void	set_attributes_long(char *path, t_elem *item, t_args args)
+int		set_attributes_long(char *path, t_elem *item, t_args args)
 {
 	t_stat	stat_s;
 	char	*tmp;
@@ -20,7 +20,7 @@ void	set_attributes_long(char *path, t_elem *item, t_args args)
 	if (!(tmp = ft_strjoin3(path, "/", (*item).name)))
 		exit_e(ENOMEM, "ft_strjoin3 ", __func__);
 	if (lstat(tmp, &stat_s) == -1)
-		exit_path(errno, tmp, "lstat ", __func__);
+		return (put_error_path(errno, tmp, "lstat ", __func__));
 	(*item).atime = stat_s.st_atime;
 	(*item).mtime = stat_s.st_mtime;
 	(*item).blocks = stat_s.st_blocks;
@@ -40,4 +40,5 @@ void	set_attributes_long(char *path, t_elem *item, t_args args)
 	if ((*item).type == 'l')
 		(*item).ln_target = get_slink_target(tmp, stat_s.st_size);
 	free(tmp);
+	return (0);
 }

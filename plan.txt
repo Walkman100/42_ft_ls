@@ -101,7 +101,7 @@ main:
 		output_columns
 		output_lines
 		free_items
-	show_folders ↩
+	show_folders ↩ (in show_file.c)
 	show_folder
 		get_folder
 			get_folder_count

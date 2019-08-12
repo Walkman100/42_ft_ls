@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/09 01:42:27 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/12 11:06:34 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,12 @@ int				cmp_access(t_elem elem1, t_elem elem2);
 void			show_folder_subfolders(char *path, t_args args, t_elem *items);
 void			free_items(t_elem **items);
 
-void			set_attributes_short(char *path, t_elem *item);
+int				set_attributes_short(char *path, t_elem *item);
 void			output_columns(t_elem *elems, t_args args);
 t_colinfo		get_column_info(t_elem *elems);
 size_t			get_elem_count(t_elem *elems);
 
-void			set_attributes_long(char *path, t_elem *item, t_args args);
+int				set_attributes_long(char *path, t_elem *item, t_args args);
 void			parse_mode(mode_t mode, char *type, char **perms);
 char			get_extra_char(char *path);
 char			*parse_user(uid_t uid);

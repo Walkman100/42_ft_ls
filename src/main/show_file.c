@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 12:24:42 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/11 13:21:52 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/12 11:05:17 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	show_files(char **files, t_args args)
 	{
 		items[i].name = ft_strdup(*files);
 		if (args.long_list)
-			set_attributes_long((**files == '/') ? "" : ".", &items[i], args);
+			i += set_attributes_long((**files == '/') ? "" : ".", &items[i], args);
 		else
-			set_attributes_short((**files == '/') ? "" : ".", &items[i]);
+			i += set_attributes_short((**files == '/') ? "" : ".", &items[i]);
 		i++;
 		files++;
 	}
