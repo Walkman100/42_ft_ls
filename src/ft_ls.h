@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 14:41:22 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/18 22:03:50 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # ifdef __linux__
 #  include <linux/uuid.h>
 #  include <sys/sysmacros.h>
+#  include <acl/libacl.h>
 # else
 #  include <uuid/uuid.h>
 # endif
