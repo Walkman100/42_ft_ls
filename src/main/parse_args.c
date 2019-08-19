@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 16:33:01 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/19 13:53:10 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/19 15:06:38 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_args	parse_args(int *count, int argc, char **argv)
 	{
 		if (argv[*count][1] == '\0')
 			break ;
-		else if (ft_strcmp(argv[*count], "--") == 0)
+		else if (ft_strequ(argv[*count], "--"))
 		{
 			(*count)++;
 			break ;

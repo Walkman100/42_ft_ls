@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 11:17:11 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/29 11:43:11 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/19 15:03:01 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	filter(unsigned char all, char *nam)
 	if (all == 1 || nam[0] != '.')
 		return (1);
 	if (all == 2)
-		if (ft_strcmp(nam, ".") != 0 && ft_strcmp(nam, "..") != 0)
+		if (!ft_strequ(nam, ".") && !ft_strequ(nam, ".."))
 			return (1);
 	return (0);
 }
