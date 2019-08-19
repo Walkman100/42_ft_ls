@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 19:38:14 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 17:08:40 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/19 12:56:21 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ int		main(int argc, char **argv)
 	folders = ft_memalloc(sizeof(*folders) * argc);
 	while (i < argc && argv[i][0] == '-')
 	{
-		if (ft_strcmp(argv[i], "--") == 0)
+		if (argv[i][1] == '\0')
+			break ;
+		else if (ft_strcmp(argv[i], "--") == 0)
 		{
 			i++;
 			break ;
