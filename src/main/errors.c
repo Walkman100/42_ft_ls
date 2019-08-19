@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 10:31:11 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/06 08:46:10 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/19 15:45:01 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ int		put_error_path(int errno_l, char *path, char *dbg, \
 	debug_2(dbg, caller_name);
 	errno = errno_l;
 	ft_putstr_fd("ft_ls: ", STDERR_FILENO);
+	if (ft_strnequ(path, "./", 2))
+		path += 2;
+	else if (ft_strnequ(path, "//", 2))
+		path++;
 	perror(path);
 	return (-1);
 }
