@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 10:31:11 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/19 15:45:01 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/19 15:52:40 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int		put_error_path(int errno_l, char *path, char *dbg, \
 		path += 2;
 	else if (ft_strnequ(path, "//", 2))
 		path++;
+	if (*path == '\0')
+		ft_putstr(": ");
 	perror(path);
 	return (-1);
 }
