@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 12:24:42 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 11:05:17 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/19 14:10:12 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ MAXUNBR	arrlen(char **arr)
 	while (arr[i])
 		i++;
 	return (i);
+}
+
+void	show_file(char *file, t_args args)
+{
+	char	**files;
+
+	files = ft_memalloc(sizeof(*files) * 2);
+	add_file(files, file);
+	show_files(files, args);
+	MEMDEL(files);
 }
 
 void	show_files(char **files, t_args args)

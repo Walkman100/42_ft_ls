@@ -6,13 +6,30 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 16:33:01 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 14:45:08 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/19 13:53:10 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-void	parse_args(t_args *args, char *arg_str)
+void	init_args(t_args *args)
+{
+	(*args).columns = 2;
+	(*args).long_list = 0;
+	(*args).all = 0;
+	(*args).no_recurse = 0;
+	(*args).recursive = 0;
+	(*args).no_sort = 0;
+	(*args).reverse_sort = 0;
+	(*args).sort_time = 0;
+	(*args).sort_access = 0;
+	(*args).colour = 0;
+	(*args).show_owner = 1;
+	(*args).show_group = 1;
+	(*args).num_ids = 0;
+}
+
+void	parse_flagstr(t_args *args, char *arg_str)
 {
 	while (*arg_str)
 	{
@@ -68,4 +85,24 @@ void	parse_args(t_args *args, char *arg_str)
 		}
 		arg_str++;
 	}
+}
+
+t_args	parse_args(int *count, int argc, char **argv)
+{
+	t_args	args;
+
+	init_args(&args);
+	while (*count < argc && argv[*count][0] == '-')
+	{
+		if (argv[*count][1] == '\0')
+			break ;
+		else if (ft_strcmp(argv[*count], "--") == 0)
+		{
+			(*count)++;
+			break ;
+		}
+		parse_flagstr(&args, argv[*count] + 1);
+		(*count)++;
+	}
+	return (args);
 }

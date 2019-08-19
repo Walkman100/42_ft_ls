@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 22:59:56 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/06 08:56:42 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/19 14:10:03 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	show_folder_subfolders(char *path, t_args args, t_elem *items)
 				exit_e(ENOMEM, "ft_strjoin3 ", __func__);
 			ft_printf("\n%s:\n", tmp);
 			show_folder(tmp, args);
-			ft_memdel((void **)&tmp);
+			MEMDEL(tmp);
 		}
 		items++;
 	}

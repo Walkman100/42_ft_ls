@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 09:54:18 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/06 10:11:48 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/19 14:08:51 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	free_items(t_elem **items)
 	tmp = *items;
 	while ((*tmp).name)
 	{
-		ft_memdel((void **)&(*tmp).perms);
-		ft_memdel((void **)&(*tmp).user);
-		ft_memdel((void **)&(*tmp).group);
-		ft_memdel((void **)&(*tmp).date);
-		ft_memdel((void **)&(*tmp).name);
-		ft_memdel((void **)&(*tmp).ln_target);
+		MEMDEL((*tmp).perms);
+		MEMDEL((*tmp).user);
+		MEMDEL((*tmp).group);
+		MEMDEL((*tmp).date);
+		MEMDEL((*tmp).name);
+		MEMDEL((*tmp).ln_target);
 		tmp++;
 	}
 	ft_memdel((void **)items);

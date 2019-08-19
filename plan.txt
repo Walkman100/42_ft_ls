@@ -95,17 +95,23 @@ output_array
 
 current structure:
 main:
-	init_args
 	parse_args
-	add_file
-	show_files
-		set_attributes_short
-		set_attributes_long
-		sort_elem_array
-		output_columns
-		output_lines
-		free_items
-	show_folders ↩ (in show_file.c)
+		init_args
+		parse_flagstr
+	parse_names
+		add_file
+		show_files
+			set_attributes_short
+			set_attributes_long
+			sort_elem_array
+			output_columns
+			output_lines
+			free_items
+		show_folders (in show_file.c)
+			show_folder ↩
+	show_file
+		add_file
+		show_files
 	show_folder
 		get_folder
 			get_folder_count
