@@ -6,7 +6,7 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/08/06 12:37:38 by mcarter          ###   ########.fr        #
+#    Updated: 2019/08/19 10:28:48 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,15 @@ HFILE = src/ft_ls.h
 LFT = -L libft -lft
 LFTA = libft/libft.a
 
+UNAME_S := $(shell uname)
+ifeq ($(UNAME_S),Linux)
+	LACL = -lacl
+endif
+
 all: $(NAME)
 
 $(NAME): $(LFTA) $(OFILES) $(HFILE)
-	gcc $(GCCFLAGS) $(OFILES) $(LFT) -o $(NAME)
+	gcc $(GCCFLAGS) $(OFILES) $(LFT) $(LACL) -o $(NAME)
 
 $(LFTA):
 	make -C libft
