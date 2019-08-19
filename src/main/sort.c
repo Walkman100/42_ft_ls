@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:13 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 15:35:20 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/19 11:13:24 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,18 @@ void	reverse_array(t_elem *arr)
 
 void	sort_elem_array(t_elem *arr, t_args args)
 {
-	int	(*cmp)(t_elem, t_elem);
-
 	if (args.no_sort)
 		return ;
 	else if (args.sort_time)
 	{
+		sort_elems(arr, cmp_name);
 		if (args.sort_access)
-			cmp = cmp_access;
+			sort_elems(arr, cmp_access);
 		else
-			cmp = cmp_modified;
+			sort_elems(arr, cmp_modified);
 	}
 	else
-		cmp = cmp_name;
-	sort_elems(arr, cmp);
+		sort_elems(arr, cmp_name);
 	if (args.reverse_sort)
 		reverse_array(arr);
 }
