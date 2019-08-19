@@ -125,6 +125,7 @@ main:
 		sort_elem_array
 			sort_elems
 			reverse_array
+				get_elem_count
 			cmp_name
 			cmp_access
 			cmp_modified
