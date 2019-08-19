@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:19:57 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 14:52:22 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/19 16:53:47 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int		set_attributes_long(char *path, t_elem *item, t_args args)
 		exit_e(ENOMEM, "ft_strjoin3 ", __func__);
 	if (lstat(tmp, &stat_s) == -1)
 		return (put_error_path(errno, tmp, "lstat ", __func__));
+	if (ft_strlen((*item).name) == 0)
+		return (put_error_path(errno, tmp, "emptyName ", __func__));
 	(*item).atime = stat_s.st_atime;
 	(*item).mtime = stat_s.st_mtime;
 	(*item).blocks = stat_s.st_blocks;
@@ -39,6 +41,6 @@ int		set_attributes_long(char *path, t_elem *item, t_args args)
 		(*item).date = get_time_str(stat_s.st_mtime);
 	if ((*item).type == 'l')
 		(*item).ln_target = get_slink_target(tmp, stat_s.st_size);
-	free(tmp);
+	MEMDEL(tmp);
 	return (0);
 }
