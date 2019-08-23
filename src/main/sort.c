@@ -6,13 +6,13 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:13 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/23 08:40:58 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/23 12:35:40 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-void	sort_elems(t_elem *arr, int (*cmp)(t_elem, t_elem))
+void	sort_elems(t_elem *arr, long (*cmp)(t_elem, t_elem))
 {
 	int		i;
 	int		b_sorted;
