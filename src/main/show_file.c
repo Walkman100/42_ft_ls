@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 12:24:42 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/19 14:10:12 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/23 09:44:16 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,14 @@ void	show_files(char **files, t_args args)
 	free_items(&items);
 }
 
-void	show_folders(char **folders, t_args args)
+void	show_folders(char **folders, t_args args, char forceshow)
 {
 	char	*first;
 	int		morethanone;
 
 	first = *folders;
 	morethanone = (folders[1] ? 1 : 0);
+	morethanone = (forceshow ? 1 : morethanone);
 	while (*folders)
 	{
 		if (first != *folders)

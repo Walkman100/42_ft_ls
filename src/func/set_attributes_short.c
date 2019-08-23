@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:20:13 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/19 15:51:24 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/23 09:45:18 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int		set_attributes_short(char *path, t_elem *item)
 		exit_e(ENOMEM, "ft_strjoin3 ", __func__);
 	if (lstat(tmp, &stat_s) == -1)
 		return (put_error_path(errno, tmp, "lstat ", __func__));
-	if (ft_strlen((*item).name) == 0)
-		return (put_error_path(errno, tmp, "emptyName ", __func__));
 	MEMDEL(tmp);
 	(*item).atime = stat_s.st_atime;
 	(*item).mtime = stat_s.st_mtime;

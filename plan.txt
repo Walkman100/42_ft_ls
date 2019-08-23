@@ -98,6 +98,7 @@ main:
 	parse_args
 		init_args
 		parse_flagstr
+	sort_str_array
 	parse_names
 		add_file
 		show_files
