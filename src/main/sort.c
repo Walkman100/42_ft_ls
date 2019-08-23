@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:13 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/19 11:13:24 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/23 08:40:58 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,31 @@ void	sort_elem_array(t_elem *arr, t_args args)
 		sort_elems(arr, cmp_name);
 	if (args.reverse_sort)
 		reverse_array(arr);
+}
+
+void	sort_str_array(char **arr, t_args args)
+{
+	int		i;
+	int		b_sorted;
+	char	*temp;
+
+	if (args.no_sort)
+		return ;
+	b_sorted = 0;
+	while (b_sorted == 0)
+	{
+		b_sorted = 1;
+		i = 0;
+		while (arr[i] && arr[i + 1])
+		{
+			if (ft_strcmp(arr[i], arr[i + 1]) > 0)
+			{
+				temp = arr[i];
+				arr[i] = arr[i + 1];
+				arr[i + 1] = temp;
+				b_sorted = 0;
+			}
+			i++;
+		}
+	}
 }

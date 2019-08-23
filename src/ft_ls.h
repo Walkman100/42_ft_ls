@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/19 13:43:05 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/23 08:52:11 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct	s_lineinfo
 }				t_lineinfo;
 
 t_args			parse_args(int *count, int argc, char **argv);
+void			sort_str_array(char **arr, t_args args);
 void			add_file(char **files, char *path);
 void			show_file(char *file, t_args args);
 void			show_files(char **files, t_args args);
