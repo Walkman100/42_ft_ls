@@ -102,6 +102,7 @@ main:
 	parse_names
 		add_file
 		show_files
+			arrlen
 			set_attributes_short
 			set_attributes_long
 			sort_elem_array
@@ -109,17 +110,22 @@ main:
 			output_lines
 			free_items
 		show_folders (in show_file.c)
+			arrlen
+			set_attributes_short
+			sort_elem_array
 			show_folder ↩
 	show_file
 		add_file
-		show_files
+		show_files (see above)
 	show_folder
 		get_folder
 			get_folder_count
 				filter
 			filter
 			set_attributes_short
-				parse_mode (see below)
+				parse_mode
+					get_type
+					set_perms
 			set_attributes_long
 				parse_mode
 					get_type

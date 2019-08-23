@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 12:24:42 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/23 09:44:16 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/23 14:16:54 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,32 @@ void	show_files(char **files, t_args args)
 
 void	show_folders(char **folders, t_args args, char forceshow)
 {
-	char	*first;
+	t_elem	*items;
+	int		i;
 	int		morethanone;
 
-	first = *folders;
 	morethanone = (folders[1] ? 1 : 0);
 	morethanone = (forceshow ? 1 : morethanone);
+	items = (t_elem *)ft_memalloc(sizeof(t_elem) * (arrlen(folders) + 1));
+	i = 0;
 	while (*folders)
 	{
-		if (first != *folders)
-			ft_putchar('\n');
-		if (morethanone)
-			ft_printf("%s:\n", *folders);
-		show_folder(*folders, args);
+		items[i].name = ft_strdup(*folders);
+		i += set_attributes_short((**folders == '/') ? "" : ".", &items[i]);
+		i++;
 		folders++;
 	}
+	items[i].name = 0;
+	sort_elem_array(items, args);
+	i = 0;
+	while (items[i].name)
+	{
+		if (i)
+			ft_putchar('\n');
+		if (morethanone)
+			ft_printf("%s:\n", items[i].name);
+		show_folder(items[i].name, args);
+		i++;
+	}
+	free_items(&items);
 }
