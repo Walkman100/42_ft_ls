@@ -123,10 +123,12 @@ main:
 				filter
 			filter
 			set_attributes_short
+				set_time
 				parse_mode
 					get_type
 					set_perms
 			set_attributes_long
+				set_time
 				parse_mode
 					get_type
 					set_perms

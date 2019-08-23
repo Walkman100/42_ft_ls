@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/23 12:35:07 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/23 16:07:32 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ typedef struct	s_args
 typedef struct	s_elem
 {
 	time_t		atime;
+	long		atimenano;
 	time_t		mtime;
+	long		mtimenano;
 	blkcnt_t	blocks;
 	char		type;
 	char		*perms;
@@ -121,6 +123,7 @@ long			cmp_access(t_elem elem1, t_elem elem2);
 void			show_folder_subfolders(char *path, t_args args, t_elem *items);
 void			free_items(t_elem **items);
 
+void			set_time(t_elem *elem, t_stat stat_s);
 int				set_attributes_short(char *path, t_elem *item);
 void			output_columns(t_elem *elems, t_args args);
 t_colinfo		get_column_info(t_elem *elems);

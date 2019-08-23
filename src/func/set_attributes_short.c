@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:20:13 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/23 09:45:18 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/23 16:31:26 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int		set_attributes_short(char *path, t_elem *item)
 	if (lstat(tmp, &stat_s) == -1)
 		return (put_error_path(errno, tmp, "lstat ", __func__));
 	MEMDEL(tmp);
-	(*item).atime = stat_s.st_atime;
-	(*item).mtime = stat_s.st_mtime;
+	set_time(item, stat_s);
 	parse_mode(stat_s.st_mode, &(*item).type, &(*item).perms);
 	return (0);
 }

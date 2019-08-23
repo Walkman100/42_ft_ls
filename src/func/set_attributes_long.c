@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:19:57 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/23 09:45:08 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/23 16:09:55 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int		set_attributes_long(char *path, t_elem *item, t_args args)
 		exit_e(ENOMEM, "ft_strjoin3 ", __func__);
 	if (lstat(tmp, &stat_s) == -1)
 		return (put_error_path(errno, tmp, "lstat ", __func__));
-	(*item).atime = stat_s.st_atime;
-	(*item).mtime = stat_s.st_mtime;
+	set_time(item, stat_s);
 	(*item).blocks = stat_s.st_blocks;
 	parse_mode(stat_s.st_mode, &(*item).type, &(*item).perms);
 	(*item).perms[9] = get_extra_char(tmp);
@@ -34,9 +33,9 @@ int		set_attributes_long(char *path, t_elem *item, t_args args)
 	else
 		(*item).fsize = stat_s.st_size;
 	if (args.sort_access && !args.sort_time)
-		(*item).date = get_time_str(stat_s.st_atime);
+		(*item).date = get_time_str((*item).atime);
 	else
-		(*item).date = get_time_str(stat_s.st_mtime);
+		(*item).date = get_time_str((*item).mtime);
 	if ((*item).type == 'l')
 		(*item).ln_target = get_slink_target(tmp, stat_s.st_size);
 	MEMDEL(tmp);
