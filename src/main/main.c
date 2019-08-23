@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 19:38:14 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/23 09:44:45 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/23 10:05:18 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ char	parse_names(int *count, int argc, char **argv, t_args args)
 	while (*count < argc)
 	{
 		got_path = 1;
-		if (stat(argv[*count], &stat_s) == -1)
+		if (lstat(argv[*count], &stat_s) == -1)
 			encountered_error = \
-				put_error_path(errno, argv[*count], "stat ", __func__) ? 1 : 1;
+				put_error_path(errno, argv[*count], "lstat ", __func__) ? 1 : 1;
 		else if ((stat_s.st_mode & S_IFDIR) == S_IFDIR && !args.no_recurse)
 			add_file(folders, argv[*count]);
 		else

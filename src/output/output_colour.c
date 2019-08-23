@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 16:31:15 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/02 16:16:48 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/23 10:42:15 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,11 @@ void	output_colour(char type, char *perms)
 		put_clr(BLUE "" BCK_CYAN);
 	else if (type == 'c')
 		put_clr(BLUE "" BCK_YELLOW);
-	else if (perms[2] == 'x' || perms[5] == 'x' || perms[8] == 'x')
-		put_clr(RED);
 	else if (perms[2] == 's')
 		put_clr(BLACK "" BCK_RED);
 	else if (perms[5] == 's')
 		put_clr(BLACK "" BCK_CYAN);
+	else if (perms[2] == 'x' || perms[5] == 'x' || \
+											perms[8] == 'x' || perms[8] == 't')
+		put_clr(RED);
 }
