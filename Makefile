@@ -6,7 +6,7 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/08/23 16:06:41 by mcarter          ###   ########.fr        #
+#    Updated: 2019/08/25 00:47:39 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ $(NAME): $(LFTA) $(OFILES) $(HFILE)
 	gcc $(GCCFLAGS) $(OFILES) $(LFT) $(LACL) -o $(NAME)
 
 $(LFTA):
+	@git submodule init
 	make -C libft
 
 clean:
@@ -60,6 +61,10 @@ re: fclean all
 
 norm:
 	norminette $(HFILE) $(SRC)
+
+update:
+	git pull
+	git submodule update
 
 # Individual files
 
