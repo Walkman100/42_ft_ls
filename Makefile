@@ -6,7 +6,7 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/08/25 18:56:02 by mcarter          ###   ########.fr        #
+#    Updated: 2019/08/25 20:25:15 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,9 @@ MAKEFLAGS += -j
 
 UNAME_S := $(shell uname)
 ifeq ($(UNAME_S),Linux)
-	LACL = -lacl
+	ifndef ANDROID_ROOT
+		LACL = -lacl
+	endif
 endif
 
 
@@ -69,8 +71,6 @@ update:
 	git pull
 	git submodule update
 
-
-.PHONY: libft
 
 # Individual files
 

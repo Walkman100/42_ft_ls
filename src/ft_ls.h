@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/23 16:07:32 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/25 18:38:11 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 # include <pwd.h>
 # include <grp.h>
 # include <sys/xattr.h>
-# include <sys/acl.h>
+# ifndef __ANDROID__
+#  include <sys/acl.h>
+# endif
 # include <time.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -29,7 +31,9 @@
 # ifdef __linux__
 #  include <linux/uuid.h>
 #  include <sys/sysmacros.h>
-#  include <acl/libacl.h>
+#  ifndef __ANDROID__
+#   include <acl/libacl.h>
+#  endif
 # else
 #  include <uuid/uuid.h>
 # endif
