@@ -6,7 +6,7 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/08/25 01:49:22 by mcarter          ###   ########.fr        #
+#    Updated: 2019/08/25 18:56:02 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,17 +47,17 @@ all: $(NAME)
 $(NAME): $(LFTA) $(OFILES) $(HFILE)
 	gcc $(GCCFLAGS) $(OFILES) $(LFT) $(LACL) -o $(NAME)
 
-$(HFILE): libft
-$(LFTA): libft
+$(HFILE): libft/libft.h
+$(LFTA): libft/libft.h
 	make -C libft
-libft:
+libft/libft.h:
 	@git submodule update --init
 
 
 clean:
 	rm -rf bin/
 	rm -f $(NAME)
-fclean: clean
+fclean: clean libft/libft.h
 	make -C libft fclean
 re: fclean
 	make all

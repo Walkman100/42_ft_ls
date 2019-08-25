@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 19:38:14 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/23 10:05:18 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/25 18:53:46 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	parse_names(int *count, int argc, char **argv, t_args args)
 	char	**files;
 	char	**folders;
 	t_stat	stat_s;
-	char	encountered_error;
+	int	encountered_error;
 
 	got_path = 0;
 	files = ft_memalloc(sizeof(*files) * argc);
@@ -27,9 +27,8 @@ char	parse_names(int *count, int argc, char **argv, t_args args)
 	while (*count < argc)
 	{
 		got_path = 1;
-		if (lstat(argv[*count], &stat_s) == -1)
-			encountered_error = \
-				put_error_path(errno, argv[*count], "lstat ", __func__) ? 1 : 1;
+		if (stat(argv[*count], &stat_s) == -1 && lstat(argv[*count], &stat_s) == -1)
+			encountered_error = put_error_path(errno, argv[*count], "stat/lstat ", __func__);
 		else if ((stat_s.st_mode & S_IFDIR) == S_IFDIR && !args.no_recurse)
 			add_file(folders, argv[*count]);
 		else
@@ -41,7 +40,7 @@ char	parse_names(int *count, int argc, char **argv, t_args args)
 	if (*files && *folders)
 		ft_putchar('\n');
 	if (*folders)
-		show_folders(folders, args, encountered_error);
+		show_folders(folders, args, encountered_error ? 1 : 0);
 	MEMDEL(files);
 	MEMDEL(folders);
 	return (got_path);
