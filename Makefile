@@ -6,7 +6,7 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/08/25 00:53:50 by mcarter          ###   ########.fr        #
+#    Updated: 2019/08/25 01:49:22 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,36 +35,42 @@ OFILES = bin/filter.o bin/get_column_info.o bin/get_elem_count.o \
 HFILE = src/ft_ls.h
 LFT = -L libft -lft
 LFTA = libft/libft.a
+MAKEFLAGS += -j
 
 UNAME_S := $(shell uname)
 ifeq ($(UNAME_S),Linux)
 	LACL = -lacl
 endif
 
-all: $(NAME)
 
+all: $(NAME)
 $(NAME): $(LFTA) $(OFILES) $(HFILE)
 	gcc $(GCCFLAGS) $(OFILES) $(LFT) $(LACL) -o $(NAME)
 
-$(LFTA):
-	@git submodule update --init
+$(HFILE): libft
+$(LFTA): libft
 	make -C libft
+libft:
+	@git submodule update --init
+
 
 clean:
 	rm -rf bin/
 	rm -f $(NAME)
-
 fclean: clean
 	make -C libft fclean
+re: fclean
+	make all
 
-re: fclean all
 
 norm:
 	norminette $(HFILE) $(SRC)
-
 update:
 	git pull
 	git submodule update
+
+
+.PHONY: libft
 
 # Individual files
 
