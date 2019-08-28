@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:20:13 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/23 16:31:26 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/28 16:30:45 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int		set_attributes_short(char *path, t_elem *item)
 	MEMDEL(tmp);
 	set_time(item, stat_s);
 	parse_mode(stat_s.st_mode, &(*item).type, &(*item).perms);
+	(*item).fsize = stat_s.st_size;
 	return (0);
 }
