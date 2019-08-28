@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:19:57 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/23 16:09:55 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/28 15:56:07 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		set_attributes_long(char *path, t_elem *item, t_args args)
 		(*item).fsize = stat_s.st_rdev;
 	else
 		(*item).fsize = stat_s.st_size;
-	if (args.sort_access && !args.sort_time)
+	if (args.sort_access)
 		(*item).date = get_time_str((*item).atime);
 	else
 		(*item).date = get_time_str((*item).mtime);
