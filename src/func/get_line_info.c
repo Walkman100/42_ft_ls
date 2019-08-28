@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:40:34 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/11 17:13:07 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/28 14:44:05 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ t_lineinfo	get_line_info(t_elem *elems)
 
 	init_line_info(&lineinfo);
 	loop_line_info(&lineinfo, elems);
-	lineinfo.userw++;
-	lineinfo.groupw++;
+	lineinfo.fsizew++;
 	return (lineinfo);
 }
 
@@ -69,9 +68,7 @@ t_lineinfo	get_line_info(t_elem *elems)
 	init_line_info(&lineinfo);
 	loop_line_info(&lineinfo, elems);
 	lineinfo.inodew++;
-	lineinfo.userw += 2;
-	lineinfo.groupw++;
-	lineinfo.fsizew++;
+	lineinfo.fsizew += 2;
 	return (lineinfo);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 16:33:01 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/19 15:06:38 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/28 14:26:10 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	parse_flagstr(t_args *args, char *arg_str)
 	while (*arg_str)
 	{
 		if (*arg_str == 'A')
-			(*args).all = 2;
+			(*args).all = (*args).all ? (*args).all : 2;
 		else if (*arg_str == 'C')
 			(*args).columns = 1;
 		else if (*arg_str == 'G')
@@ -74,7 +74,10 @@ void	parse_flagstr(t_args *args, char *arg_str)
 		else if (*arg_str == 'u')
 			(*args).sort_access = 1;
 		else if (*arg_str == '1')
+		{
 			(*args).columns = 0;
+			(*args).long_list = 0;
+		}
 		else
 		{
 			ft_putstr_fd("ft_ls: illegal option -- ", STDERR_FILENO);
