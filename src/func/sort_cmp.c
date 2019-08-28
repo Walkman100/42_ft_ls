@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 15:30:52 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/28 15:55:38 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/28 16:10:46 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,9 @@ long	cmp_access(t_elem elem1, t_elem elem2)
 		return (elem2.atime - elem1.atime);
 	else
 		return (elem2.atimenano - elem1.atimenano);
+}
+
+long	cmp_size(t_elem elem1, t_elem elem2)
+{
+	return (elem2.fsize - elem1.fsize);
 }

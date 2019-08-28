@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/25 18:38:11 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/28 16:09:47 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct	s_args
 	char			reverse_sort : 1;
 	char			sort_time : 1;
 	char			sort_access : 1;
+	char			sort_size : 1;
 	char			colour : 1;
 	char			show_owner : 1;
 	char			show_group : 1;
@@ -124,6 +125,7 @@ void			sort_elem_array(t_elem *arr, t_args args);
 long			cmp_name(t_elem elem1, t_elem elem2);
 long			cmp_modified(t_elem elem1, t_elem elem2);
 long			cmp_access(t_elem elem1, t_elem elem2);
+long			cmp_size(t_elem elem1, t_elem elem2);
 void			show_folder_subfolders(char *path, t_args args, t_elem *items);
 void			free_items(t_elem **items);
 
