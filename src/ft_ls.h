@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/28 16:09:47 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/29 16:32:22 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@
 */
 
 typedef struct stat	t_stat;
+typedef struct dirent	t_dirent;
+typedef struct group	t_group;
+typedef struct passwd	t_passwd;
 
 typedef struct	s_args
 {

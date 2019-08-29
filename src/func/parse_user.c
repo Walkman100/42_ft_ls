@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:40 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 14:40:59 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/29 16:39:25 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*parse_user(uid_t uid, char noparse)
 {
-	struct passwd	*pw_s;
+	t_passwd	*pw_s;
 
 	if (noparse)
 		return (ft_itoa(uid));

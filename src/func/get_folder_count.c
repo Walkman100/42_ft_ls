@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 10:25:43 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/06 08:48:56 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/29 16:38:55 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 
 MAXUNBR	get_folder_count(char *path, unsigned char all)
 {
-	DIR				*dirp;
-	struct dirent	*dir_ent;
-	MAXUNBR			i;
+	DIR			*dirp;
+	t_dirent	*dir_ent;
+	MAXUNBR		i;
 
 	if (!(dirp = opendir(path)))
 		return (put_error_path(errno, path, "opendir ", __func__));

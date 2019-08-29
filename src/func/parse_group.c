@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 14:42:03 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/29 16:39:06 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*parse_group(gid_t gid, char noparse)
 {
-	struct group	*gr_s;
+	t_group	*gr_s;
 
 	if (noparse)
 		return (ft_itoa(gid));

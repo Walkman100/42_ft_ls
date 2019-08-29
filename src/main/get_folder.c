@@ -14,11 +14,11 @@
 
 t_elem	*get_folder(char *path, t_args args)
 {
-	DIR				*dirp;
-	struct dirent	*dir_ent;
-	MAXUNBR			dircount;
-	t_elem			*items;
-	int				i;
+	DIR			*dirp;
+	t_dirent	*dir_ent;
+	MAXUNBR		dircount;
+	t_elem		*items;
+	int			i;
 
 	if ((dircount = get_folder_count(path, args.all)) == (MAXUNBR)-1)
 		return (NULL);
