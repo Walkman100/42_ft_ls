@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/12 14:53:59 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/29 16:40:20 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,15 @@ t_elem	*get_folder(char *path, t_args args)
 	if ((dircount = get_folder_count(path, args.all)) == (MAXUNBR)-1)
 		return (NULL);
 	if (!(dirp = opendir(path)))
-	{
-		put_error_path(errno, path, "opendir ", __func__);
-		return (NULL);
-	}
+		return (put_error_path(errno, path, "opndir ", __func__) ? NULL : NULL);
 	if (!(items = (t_elem *)ft_memalloc(sizeof(t_elem) * (dircount + 1))))
-	{
-		put_error(ENOMEM, "ft_memalloc ", __func__);
-		return (NULL);
-	}
+		exit_e(ENOMEM, "ft_memalloc ", __func__);
 	i = 0;
 	errno = 0;
 	while ((dir_ent = readdir(dirp)) != NULL)
 	{
 		if (errno)
-		{
-			put_error_path(errno, path, "readdir ", __func__);
-			return (NULL);
-		}
+			return (put_error_path(errno, path, "readdir ", __func__) ? NULL : NULL);
 		if (filter(args.all, dir_ent->d_name))
 		{
 			items[i].name = ft_strdup(dir_ent->d_name);
@@ -54,9 +45,6 @@ t_elem	*get_folder(char *path, t_args args)
 	}
 	items[i].name = 0;
 	if (closedir(dirp) == -1)
-	{
-		put_error_path(errno, path, "closedir ", __func__);
-		return (NULL);
-	}
+		return (put_error_path(errno, path, "clsdir ", __func__) ? NULL : NULL);
 	return (items);
 }
