@@ -6,16 +6,15 @@
 -t: Sort by time modified (most recently modified first) before sorting the operands by lexicographical order.
 
 bonus:
--G: Enable colorized output.  This option is equivalent to defining CLICOLOR in the environment.
--g: Suppress Owner
-		[This option is only available for compatibility with POSIX; it is used to display the group name in the long (-l) format output (the owner name is suppressed).]
+-G: Enable colorized output.
+-g: List in long format, but omit the owner id.
 -d: Directories are listed as plain files (not searched recursively).
 -f: Output is not sorted.  This option turns on the -a option.
 -u: Use time of last access, instead of last modification of the file for sorting (-t) or long printing (-l).
 
 -1: Force output to be one entry per line.  This is the default when output is not to a terminal.
 -C: Force multi-column output; this is the default when output is to a terminal.
--n: Display user and group IDs numerically, rather than converting to a user or group name in a long (-l) output.  This option turns on the -l option.
+-n: Display user and group IDs numerically, rather than converting to a user or group name in a long (-l) output. turns on -l
 -o: List in long format, but omit the group id.
 -S: Sort files by size
 
@@ -96,77 +95,101 @@ output_array
 
 
 current structure:
+ft_ls functions:					libft functions:		system functions:
 main:
-	parse_args
+	parse_args						ft_strequ
 		init_args
-		parse_flagstr
-	sort_str_array
-	parse_names
+		parse_flagstr				ft_put[str,char]_fd		exit
+			parse_flagstr1
+			parse_flagstr2
+	sort_str_array					ft_strcmp
+	parse_names						ft_memalloc, MEMDEL
+		parse_as_folder										stat, lstat
+			put_error_path
 		add_file
-		show_files (show_path.c)
-			str_arr_len
-			set_attributes_short
-			set_attributes_long
-			sort_elem_array
-			output_columns
-			output_lines
-			free_items
-		show_folders (show_path.c)
-			str_arr_len
-			set_attributes_short
-			sort_elem_array
-			show_folder ↩
-	show_file
+		parse_names_delegate		ft_putchar
+			show_files				ft_memalloc, ft_strdup
+				str_arr_len
+				set_attributes_long
+				set_attributes_short
+				sort_elem_array
+				output_columns
+				output_lines
+				free_items
+			show_folders			ft_putchar, ft_printf
+				get_folders_info	ft_memalloc, ft_strdup, MEMDEL
+					str_arr_len
+					set_attributes_short
+				sort_elem_array
+				show_folder ↩
+				free_items
+	show_file						ft_memalloc, MEMDEL
 		add_file
 		show_files (see above)
-	show_folder
-		get_folder
-			get_folder_count
-				filter
-			filter
-			set_attributes_short
-				set_time
-				parse_mode
-					get_type
-					set_perms
-			set_attributes_long
-				set_time
-				parse_mode
-					get_type
-					set_perms
-				get_extra_char (@, +)
-				parse_user
-				parse_group
-				get_time_str
-				get_slink_target
+	show_folder						ft_printf
+		get_folder					ft_memalloc				opendir, readdir, closedir
+			get_folder_count								opendir, readdir, closedir
+				put_error_path
+				filter				ft_strequ
+			put_error_path
+			exit_e
+			get_folder_dlg			ft_strdup
+				filter				ft_strequ
+				set_attributes_long	ft_strjoin3, MEMDEL		lstat
+					exit_e
+					put_error_path
+					set_time
+					parse_mode		ft_strdup
+						get_type
+						set_perms
+					get_extra_char	(system)listxattr, acl_extended_file OR acl_get_file, acl_free
+					parse_user		ft_itoa, ft_strdup		getpwuid
+						put_error
+					parse_group		ft_itoa, ft_strdup		getgrgid
+						put_error
+					get_time_str							time, ctime
+									ft_strsub, ft_strnew, ft_strncpy, ft_strncat, MEMDEL
+					get_slink_target						readlink, strerror
+									ft_strnew, MEMDEL, ft_strjoin
+						put_error
+			   set_attributes_short	ft_strjoin3, MEMDEL		lstat
+					exit_e
+					put_error_path
+					set_time
+					parse_mode		ft_strdup
+						get_type
+						set_perms
 		sort_elem_array
 			sort_elems
-			reverse_array
-				get_elem_count
-			cmp_name
+			cmp_name				ft_strcmp
 			cmp_access
 			cmp_modified
 			cmp_size
-		output_columns
-			get_column_info
-				get_max_width
+			reverse_array
 				get_elem_count
-			output_column_n
+		output_columns										isatty
+			get_column_info			get_tw
+				get_max_width		ft_strlen
+				get_elem_count
+			output_column_n			ft_putchar
+				output_colour		put_clr
+				putstr_padr_c		ft_strlen, ft_putstr, put_clr, ft_putchar
+			output_one_column		ft_putstr, put_clr, ft_putchar
 				output_colour
-				putstr_padr_c
-			output_one_column
-				output_colour
-		get_folder_size
 		output_lines
 			get_line_info
 				init_line_info
-				loop_line_info
-			output_line
-				putnbr_padl
-				putstr_padr
-				output_colour
-		show_folder_subfolders ↩ (in recursion.c)
-		free_items
+				loop_line_info		ft_unbrlen, ft_strlen, ft_nbrlen
+			output_line				ft_printf, ft_putchar, ft_putstr, put_clr
+				putnbr_padl			ft_unbrlen, ft_putchar, ft_putunbr
+				putstr_padr			ft_strlen, ft_putstr, ft_putchar
+				put_driver_id
+				output_colour		put_clr
+		show_folder_subfolders		ft_strjoin3, ft_printf, MEMDEL
+			filter		(^ in recursion.c)
+			exit_e
+			show_folder ↩
+		free_items					MEMDEL, ft_memdel
 
 
 allowed functions:

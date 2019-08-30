@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:51 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/19 11:38:07 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/30 13:53:53 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ char	*get_time_str(time_t seconds)
 	}
 	else
 		ft_strncat(rtn, tmp + 7, 5);
-	free(tmp);
+	MEMDEL(tmp);
 	return (rtn);
 }
