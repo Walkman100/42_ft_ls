@@ -103,16 +103,16 @@ main:
 	sort_str_array
 	parse_names
 		add_file
-		show_files
-			arrlen
+		show_files (show_path.c)
+			str_arr_len
 			set_attributes_short
 			set_attributes_long
 			sort_elem_array
 			output_columns
 			output_lines
 			free_items
-		show_folders (in show_file.c)
-			arrlen
+		show_folders (show_path.c)
+			str_arr_len
 			set_attributes_short
 			sort_elem_array
 			show_folder ↩

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_file.c                                        :+:      :+:    :+:   */
+/*   show_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 12:24:42 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/23 14:16:54 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/30 12:18:52 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,6 @@ void	add_file(char **files, char *path)
 	while (*files)
 		files++;
 	*files = path;
-}
-
-MAXUNBR	arrlen(char **arr)
-{
-	MAXUNBR	i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
 }
 
 void	show_file(char *file, t_args args)
@@ -44,13 +34,14 @@ void	show_files(char **files, t_args args)
 	t_elem	*items;
 	int		i;
 
-	items = (t_elem *)ft_memalloc(sizeof(t_elem) * (arrlen(files) + 1));
+	items = (t_elem *)ft_memalloc(sizeof(t_elem) * (str_arr_len(files) + 1));
 	i = 0;
 	while (*files)
 	{
 		items[i].name = ft_strdup(*files);
 		if (args.long_list)
-			i += set_attributes_long((**files == '/') ? "" : ".", &items[i], args);
+			i += set_attributes_long((**files == '/') ? "" : ".", &items[i], \
+																		args);
 		else
 			i += set_attributes_short((**files == '/') ? "" : ".", &items[i]);
 		i++;
@@ -65,6 +56,26 @@ void	show_files(char **files, t_args args)
 	free_items(&items);
 }
 
+t_elem	*get_folders_info(char **folders)
+{
+	t_elem	*items;
+	int		i;
+
+	items = (t_elem *)ft_memalloc(sizeof(t_elem) * (str_arr_len(folders) + 1));
+	i = 0;
+	while (*folders)
+	{
+		items[i].name = ft_strdup(*folders);
+		if (set_attributes_short((**folders == '/') ? "" : ".", &items[i]) == 0)
+			i++;
+		else
+			MEMDEL(items[i].name);
+		folders++;
+	}
+	items[i].name = NULL;
+	return (items);
+}
+
 void	show_folders(char **folders, t_args args, char forceshow)
 {
 	t_elem	*items;
@@ -73,16 +84,7 @@ void	show_folders(char **folders, t_args args, char forceshow)
 
 	morethanone = (folders[1] ? 1 : 0);
 	morethanone = (forceshow ? 1 : morethanone);
-	items = (t_elem *)ft_memalloc(sizeof(t_elem) * (arrlen(folders) + 1));
-	i = 0;
-	while (*folders)
-	{
-		items[i].name = ft_strdup(*folders);
-		i += set_attributes_short((**folders == '/') ? "" : ".", &items[i]);
-		i++;
-		folders++;
-	}
-	items[i].name = 0;
+	items = get_folders_info(folders);
 	sort_elem_array(items, args);
 	i = 0;
 	while (items[i].name)

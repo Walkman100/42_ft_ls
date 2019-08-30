@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/29 16:32:22 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/30 12:26:34 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void			add_file(char **files, char *path);
 void			show_file(char *file, t_args args);
 void			show_files(char **files, t_args args);
 void			show_folders(char **folders, t_args args, char forceshow);
+MAXUNBR			str_arr_len(char **arr);
 void			show_folder(char *path, t_args args);
 t_elem			*get_folder(char *path, t_args args);
 MAXUNBR			get_folder_count(char *path, unsigned char all);
