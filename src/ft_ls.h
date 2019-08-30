@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 13:02:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/30 12:26:34 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/30 12:34:59 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ typedef struct	s_elem
 
 typedef struct	s_colinfo
 {
-	size_t	cols;
-	size_t	lines;
-	size_t	elem_count;
-	size_t	maxwidth;
+	MAXUNBR	cols;
+	MAXUNBR	lines;
+	MAXUNBR	elem_count;
+	MAXUNBR	maxwidth;
 }				t_colinfo;
 
 typedef struct	s_lineinfo
@@ -137,7 +137,7 @@ void			set_time(t_elem *elem, t_stat stat_s);
 int				set_attributes_short(char *path, t_elem *item);
 void			output_columns(t_elem *elems, t_args args);
 t_colinfo		get_column_info(t_elem *elems);
-size_t			get_elem_count(t_elem *elems);
+MAXUNBR			get_elem_count(t_elem *elems);
 
 int				set_attributes_long(char *path, t_elem *item, t_args args);
 void			parse_mode(mode_t mode, char *type, char **perms);

@@ -6,15 +6,15 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:46:44 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/30 12:18:15 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/30 12:33:49 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-size_t	get_elem_count(t_elem *elems)
+MAXUNBR	get_elem_count(t_elem *elems)
 {
-	size_t	elem_count;
+	MAXUNBR	elem_count;
 
 	elem_count = 0;
 	while (elems[elem_count].name)

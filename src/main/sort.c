@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:13 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/28 17:21:12 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/30 12:37:52 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	sort_elems(t_elem *arr, long (*cmp)(t_elem, t_elem))
 
 void	reverse_array(t_elem *arr)
 {
-	size_t	i;
-	size_t	arr_len;
+	MAXUNBR	i;
+	MAXUNBR	arr_len;
 	t_elem	temp;
 
 	i = 0;

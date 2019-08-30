@@ -6,16 +6,16 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:40:34 by mcarter           #+#    #+#             */
-/*   Updated: 2019/07/29 11:12:42 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/30 12:35:50 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-size_t		get_max_width(t_elem *elems)
+MAXUNBR		get_max_width(t_elem *elems)
 {
-	size_t	maxwidth;
-	size_t	tmp;
+	MAXUNBR	maxwidth;
+	MAXUNBR	tmp;
 
 	maxwidth = 0;
 	while ((*elems).name)
@@ -31,7 +31,7 @@ size_t		get_max_width(t_elem *elems)
 t_colinfo	get_column_info(t_elem *elems)
 {
 	t_colinfo	colinfo;
-	size_t		conwidth;
+	MAXUNBR		conwidth;
 
 	conwidth = get_tw();
 	colinfo.maxwidth = get_max_width(elems) + 1;

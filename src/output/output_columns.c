@@ -6,21 +6,21 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:22 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/05 13:55:52 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/30 12:45:08 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
 /*
-** clr = 1 to show colour
+** cl = 1 to show colour
 ** c_ln = current_line counter
 */
 
-void	output_column_n(t_elem *elems, char clr, t_colinfo colinfo, size_t c_ln)
+void	output_column_n(t_elem *elems, char cl, t_colinfo colinfo, MAXUNBR c_ln)
 {
-	size_t	i;
-	size_t	curr_elem_index;
+	MAXUNBR	i;
+	MAXUNBR	curr_elem_index;
 	t_elem	curr_elem;
 
 	i = 0;
@@ -30,13 +30,13 @@ void	output_column_n(t_elem *elems, char clr, t_colinfo colinfo, size_t c_ln)
 		if (curr_elem_index < colinfo.elem_count)
 		{
 			curr_elem = elems[curr_elem_index];
-			if (clr)
+			if (cl)
 				output_colour(curr_elem.type, curr_elem.perms);
 			if (i + 1 == colinfo.cols)
-				putstr_padr_c(curr_elem.name, clr ? RESET : "", \
+				putstr_padr_c(curr_elem.name, cl ? RESET : "", \
 													ft_strlen(curr_elem.name));
 			else
-				putstr_padr_c(curr_elem.name, clr ? RESET : "", \
+				putstr_padr_c(curr_elem.name, cl ? RESET : "", \
 													colinfo.maxwidth);
 		}
 		i++;
@@ -61,7 +61,7 @@ void	output_one_column(t_elem *elems, t_args args)
 void	output_columns(t_elem *elems, t_args args)
 {
 	t_colinfo	colinfo;
-	size_t		i;
+	MAXUNBR		i;
 
 	if (args.columns == 2)
 		args.columns = (isatty(STDOUT_FILENO)) ? 1 : 0;
