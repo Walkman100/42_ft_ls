@@ -6,7 +6,7 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/08/30 12:28:12 by mcarter          ###   ########.fr        #
+#    Updated: 2019/08/30 14:23:53 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,8 +58,8 @@ libft/libft.h:
 
 clean:
 	rm -rf bin/
-	rm -f $(NAME)
 fclean: clean libft/libft.h
+	rm -f $(NAME)
 	make -C libft fclean
 re: fclean
 	make all

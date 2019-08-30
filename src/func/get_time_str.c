@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:51 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/30 13:53:53 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/30 14:23:28 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*get_time_str(time_t seconds)
 	char	*rtn;
 
 	age = time(NULL) - seconds;
-	age = labs(age);
+	age = (age >= 0) ? age : -age;
 	tmp = ft_strsub(ctime(&seconds), 4, 20);
 	rtn = ft_strnew(tmp[19] != ' ' ? 12 : 13);
 	ft_strncpy(rtn, tmp, 7);
