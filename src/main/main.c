@@ -6,19 +6,51 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 19:38:14 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/27 17:17:05 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/30 13:10:13 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
+
+int		parse_as_folder(char *path, t_args args)
+{
+	t_stat	stat_s;
+
+	if (args.no_recurse)
+		return (0);
+	if (stat(path, &stat_s) == -1 && lstat(path, &stat_s) == -1)
+		return (put_error_path(errno, path, "stat/lstat ", __func__));
+	else if ((stat_s.st_mode & S_IFDIR) == S_IFDIR)
+	{
+		if (!args.long_list)
+			return (1);
+		lstat(path, &stat_s);
+		if ((stat_s.st_mode & S_IFLNK) == S_IFLNK)
+			return (0);
+		else
+			return (1);
+	}
+	else
+		return (0);
+}
+
+void	parse_names_delegate(char **files, char **folders, t_args args, int shw)
+{
+	if (*files)
+		show_files(files, args);
+	if (*files && *folders)
+		ft_putchar('\n');
+	if (*folders)
+		show_folders(folders, args, shw);
+}
 
 char	parse_names(int *count, int argc, char **argv, t_args args)
 {
 	char	got_path;
 	char	**files;
 	char	**folders;
-	t_stat	stat_s;
-	int	encountered_error;
+	int		encountered_error;
+	int		parse_as_folder_b;
 
 	got_path = 0;
 	files = ft_memalloc(sizeof(*files) * argc);
@@ -27,20 +59,15 @@ char	parse_names(int *count, int argc, char **argv, t_args args)
 	while (*count < argc)
 	{
 		got_path = 1;
-		if (stat(argv[*count], &stat_s) == -1 && lstat(argv[*count], &stat_s) == -1)
-			encountered_error = put_error_path(errno, argv[*count], "stat/lstat ", __func__);
-		else if ((stat_s.st_mode & S_IFDIR) == S_IFDIR && !args.no_recurse && !(args.long_list && !lstat(argv[*count], &stat_s) && (stat_s.st_mode & S_IFLNK) == S_IFLNK))
+		if ((parse_as_folder_b = parse_as_folder(argv[*count], args)) == -1)
+			encountered_error = 1;
+		else if (parse_as_folder_b)
 			add_file(folders, argv[*count]);
 		else
 			add_file(files, argv[*count]);
 		(*count)++;
 	}
-	if (*files)
-		show_files(files, args);
-	if (*files && *folders)
-		ft_putchar('\n');
-	if (*folders)
-		show_folders(folders, args, encountered_error ? 1 : 0);
+	parse_names_delegate(files, folders, args, encountered_error);
 	MEMDEL(files);
 	MEMDEL(folders);
 	return (got_path);
