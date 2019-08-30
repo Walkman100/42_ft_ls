@@ -6,11 +6,25 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/29 16:40:20 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/30 10:50:14 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
+
+int		get_folder_dlg(char *path, t_args args, t_dirent *dir_ent, t_elem *item)
+{
+	if (filter(args.all, dir_ent->d_name))
+	{
+		(*item).name = ft_strdup(dir_ent->d_name);
+		if (args.long_list)
+			set_attributes_long(path, item, args);
+		else
+			set_attributes_short(path, item);
+		return (1);
+	}
+	return (0);
+}
 
 t_elem	*get_folder(char *path, t_args args)
 {
@@ -31,16 +45,8 @@ t_elem	*get_folder(char *path, t_args args)
 	while ((dir_ent = readdir(dirp)) != NULL)
 	{
 		if (errno)
-			return (put_error_path(errno, path, "readdir ", __func__) ? NULL : NULL);
-		if (filter(args.all, dir_ent->d_name))
-		{
-			items[i].name = ft_strdup(dir_ent->d_name);
-			if (args.long_list)
-				set_attributes_long(path, &items[i], args);
-			else
-				set_attributes_short(path, &items[i]);
-			i++;
-		}
+			return (put_error_path(errno, path, "rd ", __func__) ? NULL : NULL);
+		i += get_folder_dlg(path, args, dir_ent, &items[i]);
 		errno = 0;
 	}
 	items[i].name = 0;

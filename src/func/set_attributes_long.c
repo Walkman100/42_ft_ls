@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 11:19:57 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/29 16:19:19 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/30 10:47:53 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int		set_attributes_long(char *path, t_elem *item, t_args args)
 		(*item).fsize = stat_s.st_rdev;
 	else
 		(*item).fsize = stat_s.st_size;
-	(*item).date = get_time_str( \
-		args.sort_access ? (*item).atime : (*item).mtime);
+	(*item).date = \
+				get_time_str(args.sort_access ? (*item).atime : (*item).mtime);
 	if ((*item).type == 'l')
 		(*item).ln_target = get_slink_target(tmp, stat_s.st_size);
 	MEMDEL(tmp);

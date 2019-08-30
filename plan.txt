@@ -165,7 +165,7 @@ main:
 				putnbr_padl
 				putstr_padr
 				output_colour
-		show_folder_subfolders ↩
+		show_folder_subfolders ↩ (in recursion.c)
 		free_items
 
 

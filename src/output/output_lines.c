@@ -6,11 +6,18 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:30 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/28 14:41:42 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/08/29 22:24:23 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
+
+void	put_driver_id(t_elem elem, MAXUNBR padding)
+{
+	putnbr_padl(major(elem.fsize), padding - 5);
+	ft_putchar(',');
+	putnbr_padl(minor(elem.fsize), 4);
+}
 
 void	output_line(t_elem elem, t_lineinfo lineinfo, t_args args)
 {
@@ -24,11 +31,7 @@ void	output_line(t_elem elem, t_lineinfo lineinfo, t_args args)
 	if (args.show_group)
 		putstr_padr(elem.group, lineinfo.groupw);
 	if (elem.type == 'b' || elem.type == 'c')
-	{
-		putnbr_padl(major(elem.fsize), lineinfo.fsizew - 5);
-		ft_putchar(',');
-		putnbr_padl(minor(elem.fsize), 4);
-	}
+		put_driver_id(elem, lineinfo.fsizew);
 	else
 		putnbr_padl(elem.fsize, lineinfo.fsizew);
 	ft_printf(" %s ", elem.date);

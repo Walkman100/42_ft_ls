@@ -6,7 +6,7 @@
 #    By: mcarter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 13:33:41 by mcarter           #+#    #+#              #
-#    Updated: 2019/08/25 20:25:15 by mcarter          ###   ########.fr        #
+#    Updated: 2019/08/30 10:48:28 by mcarter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ re: fclean
 
 
 norm:
-	norminette $(HFILE) $(SRC)
+	norminette $(HFILE) $(SRC) 2>/dev/null
 update:
 	git pull
 	git submodule update
