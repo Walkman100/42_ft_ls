@@ -6,7 +6,7 @@
 /*   By: mcarter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 14:05:06 by mcarter           #+#    #+#             */
-/*   Updated: 2019/08/30 10:50:14 by mcarter          ###   ########.fr       */
+/*   Updated: 2019/09/02 10:00:55 by mcarter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ int		get_folder_dlg(char *path, t_args args, t_dirent *dir_ent, t_elem *item)
 	{
 		(*item).name = ft_strdup(dir_ent->d_name);
 		if (args.long_list)
-			set_attributes_long(path, item, args);
+			return (set_attributes_long(path, item, args) ? 0 : 1);
 		else
-			set_attributes_short(path, item);
-		return (1);
+			return (set_attributes_short(path, item) ? 0 : 1);
 	}
 	return (0);
 }
