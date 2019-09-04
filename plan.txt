@@ -18,7 +18,7 @@ bonus:
 -o: List in long format, but omit the group id.
 -S: Sort files by size
 
-	args_struct:
+    args_struct:
 (all char bool)
 columns (0=off, 1=on, 2=auto)
 long
@@ -37,7 +37,7 @@ num_ids (numerical ids,  used for -n)
 
 use array with structures as elements, so can be sorted easily
 
-	element structure:
+    element structure:
 elem->atime
 elem->mtime (for sorting)
 elem->blocks (for long list)
@@ -54,142 +54,142 @@ elem->symlink_target
 ls
 \- parse args -> args_struct
    recursive?
-	loop - show_folder(args_struct)
+    loop - show_folder(args_struct)
    show_folder(args_struct)
    \- get each attribute
-	  sort_array
-	foreach item in array
-	  output_line(args_struct, elem_struct)
+      sort_array
+    foreach item in array
+      output_line(args_struct, elem_struct)
 
 
 get_folder_short (returns array of elements)
   get_filename
-	filter
+    filter
 get_folder_long (returns array of elements)
   use opendir() to get DIR struct
   use readdir(DIR) in loop to get all entries
-	  dirent holds:
-		file type
-		file name
-	stat(filename)
-	  stat struct holds:
-		mode (permissions, filetype)
-		number of links(inodes)
-		UID
-		GID
-		times
-		file size (bytes)
-	get_type (f,d,l e.t.c.)
-	get_perms
-	parse_user (get user)
-	parse_group (get group)
-	set size (instruction)
-	get_last_modified (get output string from timespec)
-	  grab seconds from struct, check difference from current time,
-	  get string from seconds, edit string appropriately
-	set filename (instruction)
-	if (stat_struct->mode /* dirent_struct->type */ contains symlink)
-	  set symlink target
+      dirent holds:
+        file type
+        file name
+    stat(filename)
+      stat struct holds:
+        mode (permissions, filetype)
+        number of links(inodes)
+        UID
+        GID
+        times
+        file size (bytes)
+    get_type (f,d,l e.t.c.)
+    get_perms
+    parse_user (get user)
+    parse_group (get group)
+    set size (instruction)
+    get_last_modified (get output string from timespec)
+      grab seconds from struct, check difference from current time,
+      get string from seconds, edit string appropriately
+    set filename (instruction)
+    if (stat_struct->mode /* dirent_struct->type */ contains symlink)
+      set symlink target
 sort_array
 output_array
 
 
 current structure:
-ft_ls functions:					libft functions:		system functions:
+ft_ls functions:                    libft functions:        system functions:
 main:
-	parse_args						ft_strequ
-		init_args
-		parse_flagstr				ft_put[str,char]_fd		exit
-			parse_flagstr1
-			parse_flagstr2
-	sort_str_array					ft_strcmp
-	parse_names						ft_memalloc, MEMDEL
-		parse_as_folder										stat, lstat
-			put_error_path
-		add_file
-		parse_names_delegate		ft_putchar
-			show_files				ft_memalloc, ft_strdup
-				str_arr_len
-				set_attributes_long
-				set_attributes_short
-				sort_elem_array
-				output_columns
-				output_lines
-				free_items
-			show_folders			ft_putchar, ft_printf
-				get_folders_info	ft_memalloc, ft_strdup, MEMDEL
-					str_arr_len
-					set_attributes_short
-				sort_elem_array
-				show_folder ↩
-				free_items
-	show_file						ft_memalloc, MEMDEL
-		add_file
-		show_files (see above)
-	show_folder						ft_printf
-		get_folder					ft_memalloc				opendir, readdir, closedir
-			get_folder_count								opendir, readdir, closedir
-				put_error_path
-				filter				ft_strequ
-			put_error_path
-			exit_e
-			get_folder_dlg			ft_strdup
-				filter				ft_strequ
-				set_attributes_long	ft_strjoin3, MEMDEL		lstat
-					exit_e
-					put_error_path
-					set_time
-					parse_mode		ft_strdup
-						get_type
-						set_perms
-					get_extra_char	(system)listxattr, acl_extended_file OR acl_get_file, acl_free
-					parse_user		ft_itoa, ft_strdup		getpwuid
-						put_error
-					parse_group		ft_itoa, ft_strdup		getgrgid
-						put_error
-					get_time_str							time, ctime
-									ft_strsub, ft_strnew, ft_strncpy, ft_strncat, MEMDEL
-					get_slink_target						readlink, strerror
-									ft_strnew, MEMDEL, ft_strjoin
-						put_error
-			   set_attributes_short	ft_strjoin3, MEMDEL		lstat
-					exit_e
-					put_error_path
-					set_time
-					parse_mode		ft_strdup
-						get_type
-						set_perms
-		sort_elem_array
-			sort_elems
-			cmp_name				ft_strcmp
-			cmp_access
-			cmp_modified
-			cmp_size
-			reverse_array
-				get_elem_count
-		output_columns										isatty
-			get_column_info			get_tw
-				get_max_width		ft_strlen
-				get_elem_count
-			output_column_n			ft_putchar
-				output_colour		put_clr
-				putstr_padr_c		ft_strlen, ft_putstr, put_clr, ft_putchar
-			output_one_column		ft_putstr, put_clr, ft_putchar
-				output_colour
-		output_lines
-			get_line_info
-				init_line_info
-				loop_line_info		ft_unbrlen, ft_strlen, ft_nbrlen
-			output_line				ft_printf, ft_putchar, ft_putstr, put_clr
-				putnbr_padl			ft_unbrlen, ft_putchar, ft_putunbr
-				putstr_padr			ft_strlen, ft_putstr, ft_putchar
-				put_driver_id
-				output_colour		put_clr
-		show_folder_subfolders		ft_strjoin3, ft_printf, MEMDEL
-			filter		(^ in recursion.c)
-			exit_e
-			show_folder ↩
-		free_items					MEMDEL, ft_memdel
+    parse_args                      ft_strequ
+        init_args
+        parse_flagstr               ft_put[str,char]_fd     exit
+            parse_flagstr1
+            parse_flagstr2
+    sort_str_array                  ft_strcmp
+    parse_names                     ft_memalloc, MEMDEL
+        parse_as_folder                                     stat, lstat
+            put_error_path
+        add_file
+        parse_names_delegate        ft_putchar
+            show_files              ft_memalloc, ft_strdup
+                str_arr_len
+                set_attributes_long
+                set_attributes_short
+                sort_elem_array
+                output_columns
+                output_lines
+                free_items
+            show_folders            ft_putchar, ft_printf
+                get_folders_info    ft_memalloc, ft_strdup, MEMDEL
+                    str_arr_len
+                    set_attributes_short
+                sort_elem_array
+                show_folder ↩
+                free_items
+    show_file                       ft_memalloc, MEMDEL
+        add_file
+        show_files (see above)
+    show_folder                     ft_printf
+        get_folder                  ft_memalloc             opendir, readdir, closedir
+            get_folder_count                                opendir, readdir, closedir
+                put_error_path
+                filter              ft_strequ
+            put_error_path
+            exit_e
+            get_folder_dlg          ft_strdup
+                filter              ft_strequ
+                set_attributes_long ft_strjoin3, MEMDEL     lstat
+                    exit_e
+                    put_error_path
+                    set_time
+                    parse_mode      ft_strdup
+                        get_type
+                        set_perms
+                    get_extra_char  (system)listxattr, acl_extended_file OR acl_get_file, acl_free
+                    parse_user      ft_itoa, ft_strdup      getpwuid
+                        put_error
+                    parse_group     ft_itoa, ft_strdup      getgrgid
+                        put_error
+                    get_time_str                            time, ctime
+                                    ft_strsub, ft_strnew, ft_strncpy, ft_strncat, MEMDEL
+                    get_slink_target                        readlink, strerror
+                                    ft_strnew, MEMDEL, ft_strjoin
+                        put_error
+               set_attributes_short ft_strjoin3, MEMDEL     lstat
+                    exit_e
+                    put_error_path
+                    set_time
+                    parse_mode      ft_strdup
+                        get_type
+                        set_perms
+        sort_elem_array
+            sort_elems
+            cmp_name                ft_strcmp
+            cmp_access
+            cmp_modified
+            cmp_size
+            reverse_array
+                get_elem_count
+        output_columns                                      isatty
+            get_column_info         get_tw
+                get_max_width       ft_strlen
+                get_elem_count
+            output_column_n         ft_putchar
+                output_colour       put_clr
+                putstr_padr_c       ft_strlen, ft_putstr, put_clr, ft_putchar
+            output_one_column       ft_putstr, put_clr, ft_putchar
+                output_colour
+        output_lines
+            get_line_info
+                init_line_info
+                loop_line_info      ft_unbrlen, ft_strlen, ft_nbrlen
+            output_line             ft_printf, ft_putchar, ft_putstr, put_clr
+                putnbr_padl         ft_unbrlen, ft_putchar, ft_putunbr
+                putstr_padr         ft_strlen, ft_putstr, ft_putchar
+                put_driver_id
+                output_colour       put_clr
+        show_folder_subfolders      ft_strjoin3, ft_printf, MEMDEL
+            filter      (^ in recursion.c)
+            exit_e
+            show_folder ↩
+        free_items                  MEMDEL, ft_memdel
 
 
 allowed functions:
@@ -223,32 +223,32 @@ LONG OPTIONS:
 
   The file mode printed under the -l option consists of the entry type, owner permissions, and group permissions.  The entry type character describes the type of file, as follows:
 
-	b     Block special file.
-	c     Character special file.
-	d     Directory.
-	l     Symbolic link.
-	s     Socket link.
-	p     FIFO.
-	-     Regular file.
+    b     Block special file.
+    c     Character special file.
+    d     Directory.
+    l     Symbolic link.
+    s     Socket link.
+    p     FIFO.
+    -     Regular file.
 
   The next three fields are three characters each: owner permissions, group permissions, and other permissions.  Each field has three character positions:
 
-	1.   If r, the file is readable; if -, it is not readable.
+    1.   If r, the file is readable; if -, it is not readable.
 
-	2.   If w, the file is writable; if -, it is not writable.
+    2.   If w, the file is writable; if -, it is not writable.
 
-	3.   The first of the following that applies:
+    3.   The first of the following that applies:
 
-		S     If in the owner permissions, the file is not executable and set-user-ID mode is set.  If in the group permissions, the file is not executable and set-group-ID mode is set.
+        S     If in the owner permissions, the file is not executable and set-user-ID mode is set.  If in the group permissions, the file is not executable and set-group-ID mode is set.
 
-		s     If in the owner permissions, the file is executable and set-user-ID mode is set.  If in the group permissions, the file is executable and setgroup-ID mode is set.
+        s     If in the owner permissions, the file is executable and set-user-ID mode is set.  If in the group permissions, the file is executable and setgroup-ID mode is set.
 
-		x     The file is executable or the directory is searchable.
+        x     The file is executable or the directory is searchable.
 
-		-     The file is neither readable, writable, executable, nor set-user-ID nor set-group-ID mode, nor sticky.  (See below.)
+        -     The file is neither readable, writable, executable, nor set-user-ID nor set-group-ID mode, nor sticky.  (See below.)
 
-	  These next two apply only to the third character in the last group (other permissions).
+      These next two apply only to the third character in the last group (other permissions).
 
-		T     The sticky bit is set (mode 1000), but not execute or search permission.  (See chmod(1) or sticky(8).)
+        T     The sticky bit is set (mode 1000), but not execute or search permission.  (See chmod(1) or sticky(8).)
 
-		t     The sticky bit is set (mode 1000), and is searchable or executable.  (See chmod(1) or sticky(8).)
+        t     The sticky bit is set (mode 1000), and is searchable or executable.  (See chmod(1) or sticky(8).)
