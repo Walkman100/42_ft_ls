@@ -53,6 +53,8 @@ ln -s file_ symlink_invalid
 
 mkfifo fifo
 
+python -c "import socket as s;k=s.socket(s.AF_UNIX);k.bind('socket')"
+
 echo -n "Have sudo access (y\n): "
 read -n1 ANS
 echo
@@ -74,3 +76,25 @@ if [ $(uname) == 'Darwin' ]; then
     # ACL:
     chmod +a "group:_guest deny read"   x_acls  x_attrs_acls
 fi
+
+# error handling
+mkdir \
+    errs/1 \
+    errs/2 \
+    errs/3
+
+touch errs/1/file{1..5}
+touch errs/2/file{1..5}
+touch errs/3/file{1..5}
+
+chmod 311 errs/1
+chmod 644 errs/2
+chmod 755 errs/3
+
+# recursive stuff
+mkdir -p "dirmore/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp"
+touch "dirmore/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/test"
+
+touch dirmore/tmp{1..9}
+touch dirmore/tmp{10..99}
+touch dirmore/tmp100
